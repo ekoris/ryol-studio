@@ -34,14 +34,6 @@
             <li class="nav-item">
                 <a class="nav-link text-white " href="../pages/profile.html">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">attach_money</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Promo</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">store</i>
                     </div>
                     <span class="nav-link-text ms-1">Orders</span>
@@ -51,11 +43,11 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Portofolio</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ Request::routeIs('admin.feed.*') ? 'active' : '' }}" href="{{ route('admin.feed.index') }}">
+                <a class="nav-link text-white" href="">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">grid_on</i>
                     </div>
-                    <span class="nav-link-text ms-1">Feed</span>
+                    <span class="nav-link-text ms-1">Up Comming Event</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
@@ -66,7 +58,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">sticky_note_2</i>
                     </div>
-                    <span class="nav-link-text ms-1">post</span>
+                    <span class="nav-link-text ms-1">Art Works</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
@@ -77,11 +69,11 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">insert_photo</i>
                     </div>
-                    <span class="nav-link-text ms-1">Banners</span>
+                    <span class="nav-link-text ms-1">Sliders</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
+                <a class="nav-link text-white {{ Request::routeIs('admin.about.*') ? 'active' : '' }}" href="{{ route('admin.about.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">manage_search</i>
                     </div>
@@ -89,7 +81,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
+                <a class="nav-link text-white {{ Request::routeIs('admin.user.*') ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">settings_accessibility</i>
                     </div>
