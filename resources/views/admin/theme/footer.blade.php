@@ -1,14 +1,6 @@
-<footer class="footer py-4  ">
-    <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-12 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
-                    © <script>
-                        document.write(new Date().getFullYear())
-                    </script>,
-                    powered by ryol studio
-                </div>
-            </div>
-        </div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.13
     </div>
+    <strong>Copyright &copy; Ryol Studio</strong>
 </footer>

@@ -1,71 +1,92 @@
 @extends('admin.theme.master')
 
+@php
+use App\Constants\CategoryType;
+@endphp
+
 @push('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('body')
-<div class="row">
-    <div class="col-12">
-        <a href="">
-            <button type="button" class="btn btn-outline-primary btn-sm">Create</button>
-        </a>
-        <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                    <h6 class="text-white text-capitalize ps-3">Authors table</h6>
-                </div>
-            </div>
-            <div class="card-body px-0 pb-2">
-                <div class="table-responsive p-0">
-                    <table class="table align-items-center mb-0">
-                        <thead>
-                            <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</th>
-                                <th class="text-secondary opacity-7"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($users as $item)
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            User
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">User</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <a class="btn btn-warning mb-0" href="{{ route('admin.user.create') }}">Create</a>
+                            </div>
+                            <div class="col-md-7 col-lg-12 row" style="text-align: right">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <input type="text" name="q" class="form-control" placeholder="Search ..." value="{{ Request::get('q') }}">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover table-light">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="{{ asset('assets/admin/assets/img/user.jpg') }}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">{{ $item->name }}</h6>
-                                                <p class="text-xs text-secondary mb-0">{{ $item->email }}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Actice</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{ date('d F Y') }}</span>
-                                    </td>
-                                    <td class="" style="text-align: center !important;">
-                                        <div>
-                                            <button type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-                                            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-                                        </div>
-                                        <div>
-                                        </div>
-                                    </td>
+                                    <th>User</th>
+                                    <th>Email</th>
+                                    <th></th>
                                 </tr>
-                            @empty
-                                
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse ($users as $item)
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.user.edit', $item->id) }}" type="button" class="btn btn-primary btn-sm">Edit</a>
+                                            @if ($item->id != 1)
+                                                <a href="{{ route('admin.user.delete', $item->id) }}" onclick="confirm("Are You Sure ??")" class="btn btn-danger btn-sm">Delete</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr> 
+                                        <td class="text-center" colspan="3">Data Empty</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script>
+    $(function () {
+        $(".datepicker-input").datepicker({ 
+            autoclose: true, 
+            todayHighlight: true,
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years"
+        });
+    });
+</script>
 @endpush

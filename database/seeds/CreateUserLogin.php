@@ -13,7 +13,7 @@ class CreateUserLogin extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => Str::random(10),
+            'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
         ]);

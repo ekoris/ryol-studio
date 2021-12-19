@@ -1,44 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/admin') }}/assets/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="{{ asset('assets/admin') }}/assets/img/favicon.png">
-        <title>Ryol</title>
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-        <link href="{{ asset('assets/admin/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-        <link href="{{ asset('assets/admin/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-        <link id="pagestyle" href="{{ asset('assets/admin/assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
-        @stack('styles')
-    </head>
+<html>
 
-    <body class="g-sidenav-show  bg-gray-200">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ryol Studio | Admin</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="{{ asset('assets/admin-v1/assets/toast/toastr.min.css') }}">
+    @stack('styles')
+</head>
+
+<body class="hold-transition skin-red-light sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="{{ asset('assets/admin') }}/index2.html" class="logo">
+                <span class="logo-mini"><b>Ryol</b>Std</span>
+                <span class="logo-lg"><b>Ryol</b>Studio</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ route('admin.sign-out') }}"><i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
         @include('admin.theme.sidebar')
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            @include('admin.theme.navbar')
-            <div class="container-fluid py-4">
-                @yield('body')
-            </div>
-            @include('admin.theme.footer')
-        </main>
-        <script src="{{ asset('assets/admin') }}/assets/js/core/popper.min.js"></script>
-        <script src="{{ asset('assets/admin') }}/assets/js/core/bootstrap.min.js"></script>
-        <script src="{{ asset('assets/admin') }}/assets/js/plugins/perfect-scrollbar.min.js"></script>
-        <script src="{{ asset('assets/admin') }}/assets/js/plugins/smooth-scrollbar.min.js"></script>
-        <script>
-            var win = navigator.platform.indexOf('Win') > -1;
-            if (win && document.querySelector('#sidenav-scrollbar')) {
-                var options = {
-                    damping: '0.5'
-                }
-                Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-            }
-        </script>
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="{{ asset('assets/admin') }}/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-        @stack('scripts')
-    </body>
+            @yield('body')
+        @include('admin.theme.footer')
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <script src="{{ asset('assets/admin') }}/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/dist/js/adminlte.min.js"></script>
+    <script src="{{ asset('assets/admin-v1/assets/toast/toastr.min.js') }}"></script>
+    <script>
+        toastr.options = {
+            "progressBar": true
+        };
+    </script>
+    @stack('toastr')
+    @if(session()->has("notice"))
+        @php
+            $value = Session::get('notice');
+        @endphp
+        @if (is_array($value))
+            <script>
+                @foreach ($value as $data)
+                    @if ($data['labelClass'] == 'success')
+                        toastr["success"]("{{ $data['content'] }}");
+                    @endif
+                    @if ($data['labelClass'] == 'error')
+                        toastr["error"]("{{ $data['content'] }}");
+                    @endif
+                @endforeach
+            </script>
+        @endif
+        @php
+            Session::forget('notice');
+        @endphp
+    @endif
+    @stack('scripts')
+</body>
+
 </html>

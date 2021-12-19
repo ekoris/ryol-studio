@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('theme.master');
+    return view('homepage');
 });
+
+Route::get('art-work/{param}', 'HomeController@artWork')->name("art-work");
+Route::get('up-comming/{param}', 'HomeController@upComming')->name("up-comming");
+Route::get('product/{param}', 'HomeController@product')->name("product");
+Route::get('detail-product/{slug}', 'HomeController@detailProduct')->name("detail-product");
+
+Route::get('about/cv', 'HomeController@cv')->name("about.cv");
+Route::get('about/contact-us', 'HomeController@contactUs')->name("about.contact-us");
+

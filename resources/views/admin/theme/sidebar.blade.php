@@ -1,101 +1,18 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3  bg-gradient-dark" id="sidenav-main">
-    <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-            target="_blank">
-            <img src="{{ asset('assets/admin/assets/img/logo-ct.png') }}" class="navbar-brand-img h-100"
-                alt="main_logo">
-            <span class="ms-1 font-weight-bold text-white">Ryol Admin</span>
-        </a>
-    </div>
-    <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main" style="height: 100% !important">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/dashboard.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">dashboard</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Shop</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">production_quantity_limits</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Product</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">store</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Orders</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Portofolio</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">grid_on</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Up Comming Event</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Blogs</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">sticky_note_2</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Art Works</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Website Management</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">insert_photo</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Sliders</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ Request::routeIs('admin.about.*') ? 'active' : '' }}" href="{{ route('admin.about.index') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">manage_search</i>
-                    </div>
-                    <span class="nav-link-text ms-1">About</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ Request::routeIs('admin.user.*') ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">settings_accessibility</i>
-                    </div>
-                    <span class="nav-link-text ms-1">User</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/profile.html">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">settings</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Profile</span>
-                </a>
-            </li>
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Product</li>
+            <li class="{{ Request::routeIs('admin.product.*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-calendar"></i> <span>Product</span></a></li>
+            <li class="{{ Request::routeIs('admin.order.*') ? 'active' : '' }}"><a href="{{ route('admin.order.index') }}"><i class="fa fa-area-chart"></i> <span>Order</span></a></li>
+            <li class="header">Feed</li>
+            <li class="{{ Request::routeIs('admin.up-comming.*') ? 'active' : '' }}"><a href="{{ route('admin.up-comming.index') }}"><i class="fa fa-calendar"></i> <span>Up Comming Event</span></a></li>
+            <li class="{{ Request::routeIs('admin.art-work.*') ? 'active' : '' }}"><a href="{{ route('admin.art-work.index') }}"><i class="fa fa-area-chart"></i> <span>Art Work</span></a></li>
+            <li class="header">Website Management</li>
+            <li class="{{ Request::routeIs('admin.slider.*') ? 'active' : '' }}"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-image"></i> <span>Slider</span></a></li>
+            <li class="{{ Request::routeIs('admin.category.*') ? 'active' : '' }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-bars"></i> <span>Category</span></a></li>
+            <li class="{{ Request::routeIs('admin.about.*') ? 'active' : '' }}"><a href="{{ route('admin.about.index') }}"><i class="fa fa-cog"></i> <span>About</span></a></li>
+            <li class="{{ Request::routeIs('admin.user.*') ? 'active' : '' }}"><a href="{{ route('admin.user.index') }}"><i class="fa fa-users"></i> <span>User</span></a></li>
+            <li class="{{ Request::routeIs('admin.profile.*') ? 'active' : '' }}"><a href="{{ route('admin.user.profile') }}"><i class="fa fa-circle-o text-white "></i> <span>Profile</span></a></li>
         </ul>
-    </div>
+    </section>
 </aside>
