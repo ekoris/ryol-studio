@@ -33,7 +33,7 @@ use App\Constants\CategoryType;
                                 <input type="text" name="tagline" value="{{ $website->tagline ?? null }}" required class="form-control" placeholder="Enter Name">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Logo</label>
+                                <label for="exampleInputEmail1">Image</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type='file' name="logo" onchange="readURL(this);"/>
                                     <br>

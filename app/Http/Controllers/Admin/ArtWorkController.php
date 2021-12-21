@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ArtWorkRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Image;
+use File;
 
 class ArtWorkController extends Controller
 {
@@ -29,8 +31,7 @@ class ArtWorkController extends Controller
     }
 
     public function store(Request $request)
-    {
-        try {
+    {   try {
             $data = [
                 'title' => $request->title,
                 'year' => $request->year,
@@ -43,13 +44,17 @@ class ArtWorkController extends Controller
                 $file = $request->file('image');
                 $filename = $file->getClientOriginalName();
                 if(!Storage::disk('public')->exists($filename)) { 
-                    $path = Storage::disk('public')->putFileAs(
-                        'uploads/image',
-                        $file,
-                        $filename
-                    );
+                    $path = storage_path('app/public/uploads/image');
+                    File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+
+                    $image = $request->file('image');
+                 
+                    $filePath = storage_path('app/public/uploads/image');
             
-                    Storage::setVisibility($path, 'public');        
+                    $img = Image::make($image->path());
+                    $img->resize(1000, 1000, function ($const) {
+                        $const->aspectRatio();
+                    })->save($filePath.'/'.$filename);
                 }
 
                 $data['image'] = $file->getClientOriginalName();
@@ -85,13 +90,17 @@ class ArtWorkController extends Controller
                 $file = $request->file('image');
                 $filename = $file->getClientOriginalName();
                 if(!Storage::disk('public')->exists($filename)) { 
-                    $path = Storage::disk('public')->putFileAs(
-                        'uploads/image',
-                        $file,
-                        $filename
-                    );
+                    $path = storage_path('app/public/uploads/image');
+                    File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+
+                    $image = $request->file('image');
+                 
+                    $filePath = storage_path('app/public/uploads/image');
             
-                    Storage::setVisibility($path, 'public');        
+                    $img = Image::make($image->path());
+                    $img->resize(1000, 1000, function ($const) {
+                        $const->aspectRatio();
+                    })->save($filePath.'/'.$filename);
                 }
 
                 $data['image'] = $file->getClientOriginalName();

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('art-work/{param}', 'HomeController@artWork')->name("art-work");
 Route::get('up-comming/{param}', 'HomeController@upComming')->name("up-comming");
-Route::get('product/{param}', 'HomeController@product')->name("product");
+Route::get('store/', 'HomeController@store')->name("store");
 Route::get('detail-product/{slug}', 'HomeController@detailProduct')->name("detail-product");
 
 Route::get('about/cv', 'HomeController@cv')->name("about.cv");

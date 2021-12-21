@@ -52,6 +52,12 @@ class HomeController extends Controller
         return view('up-comming', compact('param', 'products'));
     }
 
+    public function store(Request $request)
+    {
+        $products = $this->product->fetch([], false);
+        return view('store', compact('products'));
+    }
+
     public function detailProduct(Request $request, $slug)
     {
         $params['slug_product'] =  $slug;

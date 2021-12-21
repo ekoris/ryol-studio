@@ -54,15 +54,16 @@ use App\Constants\CategoryType;
                     <div class="box-body">
                         <div class="row">
                             @forelse ($products as $item)
-                            <div class="col-sm-4 col-lg-2">
+                            <div class="col-sm-4 col-lg-3 col-md-2">
                                 <div class="card mb-4 box-shadow">
-                                    <img class="card-img-top" data-src="{{ $item->image_url }}" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ $item->image_url }}" data-holder-rendered="true">
+                                    <img class="card-img-top" data-src="{{ $item->image_url }}" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;object-fit: scale-down;" src="{{ $item->image_url }}" data-holder-rendered="true">
                                     <div class="card-body">
                                         <p class="card-text">{{ $item->title }}</p>
                                         <small><i>{{ $item->year.' - '.$item->category->title }}</i></small>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="{{ route('admin.up-comming.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
                                             <a href="{{ route('admin.up-comming.delete', $item->id) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">delete</a>
+                                            <a href="{{ route('admin.qrcode', $item->slug) }}" target="_blank" class="btn btn-sm btn-primary">Download QR Code</a>
                                         </div>
                                     </div>
                                 </div>

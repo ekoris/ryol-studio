@@ -12,11 +12,12 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Poppins", sans-serif;
-  color: #444444;
+  color: #ffffff;
+  background-color: #6a5f40;
 }
 
 a {
-  color: #ffc451;
+  color: #dbd5c4;
   text-decoration: none;
 }
 
@@ -26,7 +27,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Poopins", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -205,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #ffc451;
+  color: #dbd5c4;
 }
 .navbar .dropdown ul {
   display: block;
@@ -235,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  background-color: #ffc451;
+  background-color: #dbd5c4;
 }
 .navbar .dropdown:hover > ul {
   opacity: 1;
@@ -477,7 +478,7 @@ section {
   font-weight: 600;
   text-transform: inherit;
   font-family: "Poppins", sans-serif;
-  color: #151515;
+  color: #dbd5c4;
 }
 
 /*--------------------------------------------------------------
@@ -1177,7 +1178,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: whitesmoke;
+  background:#6a5f40;
   min-height: 40px;
   margin-top: 74px;
 }

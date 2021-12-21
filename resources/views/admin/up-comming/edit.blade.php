@@ -48,7 +48,7 @@ use App\Constants\CategoryType;
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Logo</label>
+                                <label for="exampleInputEmail1">Image</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type='file' name="image" onchange="readURL(this);"/>
                                     <br>

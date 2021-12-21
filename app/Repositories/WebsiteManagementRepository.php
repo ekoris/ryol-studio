@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Repositories\Entities\Slider;
 use App\Repositories\Entities\WebsiteManagement;
 use Illuminate\Support\Facades\Storage;
+use Image;
+use File;
 
 class WebsiteManagementRepository {
 
@@ -64,13 +66,22 @@ class WebsiteManagementRepository {
     {
         $filename = $file->getClientOriginalName();
         if(!Storage::disk('public')->exists($filename)) { 
-            $path = Storage::disk('public')->putFileAs(
-                'uploads/slider',
-                $file,
-                $filename
-            );
-    
-            Storage::setVisibility($path, 'public');        
+                $filename = $file->getClientOriginalName();
+                if(!Storage::disk('public')->exists($filename)) { 
+                    $path = storage_path('app/public/uploads/slider');
+                    File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+
+                    $image = $file;
+                 
+                    $filePath = storage_path('app/public/uploads/slider');
+            
+                    $img = Image::make($image->path());
+                    $img->resize(2000, 2000, function ($const) {
+                        $const->aspectRatio();
+                    })->save($filePath.'/'.$filename);
+                }
+
+                $data['image'] = $file->getClientOriginalName();
         }
 
         return $file->getClientOriginalName();

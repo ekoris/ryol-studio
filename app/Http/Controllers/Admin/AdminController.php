@@ -18,6 +18,14 @@ class AdminController extends Controller
     public function qrcode($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        return QrCode::size(200)->generate(route('detail-product', $product->slug));
+        $output_file = 'uploads/qr-code/'.time().'.png';
+        $image = \QrCode::format('png')
+                 ->size(200)->errorCorrection('H')
+                 ->generate(route('detail-product', $product->slug));
+
+        Storage::disk('public')->put($output_file, $image);                    
+
+        return Storage::disk('public')->download($output_file);
+
     }
 }
