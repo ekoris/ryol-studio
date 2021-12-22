@@ -6,11 +6,15 @@ use App\Constants\CategoryType;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Repositories\ArtWorkRepository;
+use App\Repositories\Entities\Order;
+use App\Repositories\Entities\User;
 use App\Repositories\Entities\WebsiteManagement;
 use App\Repositories\ProductRepository;
 use App\Repositories\UpCommingRepository;
 use App\Repositories\WebsiteManagementRepository;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController extends Controller
@@ -79,5 +83,89 @@ class HomeController extends Controller
         $website = $this->website->first();
 
         return view('contact-us', compact('website'));
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function doRegister(Request $request)
+    {
+        $password = Hash::make($request->password);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $password,
+            'status' => 0,
+            'no_contact' => $request->number
+        ];
+
+        $user = User::create($data);
+        $user->assignRole('user');
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($credentials)) {
+            return redirect('/');
+        } else {
+            return redirect()->route('auth.login')->with(['error' => true]);
+        }
+    }
+
+    public function doLogin(Request $request)
+    {
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($credentials)) {
+            return redirect('/');
+        } else {
+            return redirect()->route('auth.login')->with(['error' => true]);
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
+
+    public function profile(Request $request)
+    {
+        return view('profile');
+    }
+
+    public function updateProfile (Request $request)
+    {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_contact' => $request->number
+        ];
+        
+        if ($request->password != '') {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        User::where('id', logged_in_user()->id)->update($data);
+        return redirect('/');
+    }
+
+    public function orders(Request $request)
+    {
+        Order::create([
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+            'note' => 'Wa',
+        ]);
+
+        return response('oke', 200);
     }
 }

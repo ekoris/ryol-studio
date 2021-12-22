@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\Entities\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,10 +13,15 @@ class CreateUserLogin extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $user = User::updateOrCreate([
+            'email' => 'admin@gmail.com'
+        ],
+        [
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
         ]);
+
+        $user->assignRole('admin');
     }
 }

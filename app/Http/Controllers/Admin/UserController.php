@@ -174,4 +174,25 @@ class UserController extends Controller
         return redirect()->route('admin.slider.index');
     }
 
+    public function status($id)
+    {
+        try {
+            $user = User::where('id', $id)->first();
+            if ($user->status == 0) {
+                User::where('id', $id)->update([
+                    'status' => 1
+                ]);
+            }else{
+                User::where('id', $id)->update([
+                    'status' => 0
+                ]);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        notice('success', 'Success');
+        return redirect()->route('admin.user.index');
+    }
+
 }

@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Project</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="">Home</a></li>
                 <li>Up-Comming Event</li>
             </ol>
         </div>

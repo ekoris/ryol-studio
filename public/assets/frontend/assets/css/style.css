@@ -1055,11 +1055,11 @@ section {
 --------------------------------------------------------------*/
 .contact .info {
   width: 100%;
-  background: #fff;
+  background: #6a5f40;
 }
 .contact .info i {
   font-size: 20px;
-  background: #ffc451;
+  background: #dbd5c4;
   color: #151515;
   float: left;
   width: 44px;
@@ -1081,14 +1081,14 @@ section {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px;
-  color: #484848;
+  color: #dbd5c4;
 }
 .contact .info .email, .contact .info .phone {
   margin-top: 40px;
 }
 .contact .php-email-form {
   width: 100%;
-  background: #fff;
+  background: #6a5f40;
 }
 .contact .php-email-form .form-group {
   padding-bottom: 8px;
@@ -1185,6 +1185,7 @@ section {
 .breadcrumbs h2 {
   font-size: 28px;
   font-weight: 1000;
+  color: #dbd5c4;
 }
 .breadcrumbs ol {
   display: flex;

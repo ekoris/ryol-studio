@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Statement CV</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="">Home</a></li>
                 <li>Detail</li>
             </ol>
         </div>

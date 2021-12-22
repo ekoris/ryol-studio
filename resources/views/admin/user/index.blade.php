@@ -55,10 +55,18 @@ use App\Constants\CategoryType;
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>
+                                            @if ($item->hasRole('user') && $item->status == 1)
+                                                <a href="{{ route('admin.user.status', $item->id) }}" type="button" class="btn btn-info btn-sm">Non Aktifkan</a>
+                                            @elseif($item->hasRole('user') && $item->status == 0)
+                                                <a href="{{ route('admin.user.status', $item->id) }}" type="button" class="btn btn-info btn-sm">Aktifkan</a>
+                                            @endif
                                             <a href="{{ route('admin.user.edit', $item->id) }}" type="button" class="btn btn-primary btn-sm">Edit</a>
                                             @if ($item->id != 1)
                                                 <a href="{{ route('admin.user.delete', $item->id) }}" onclick="confirm("Are You Sure ??")" class="btn btn-danger btn-sm">Delete</a>
                                             @endif
+
+                                            
+
                                         </td>
                                     </tr>
                                 @empty

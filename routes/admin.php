@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
     Route::get('login', 'AuthController@index')->name("auth");
     Route::post('sign-in', 'AuthController@signIn')->name("sign-in");
-    Route::group(['middleware' => 'auth:web'], function() {
+    Route::group(['middleware' => ['role:admin','auth:web']], function() {
         Route::get('sign-out', 'AuthController@signOut')->name("sign-out");
         Route::get('', 'AdminController@index')->name("index");
         Route::get('qrcode/{slug}', 'AdminController@qrcode')->name("qrcode");
@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::get('{id}/delete', 'UserController@delete')->name("delete");
             Route::get('profile', 'UserController@profile')->name("profile");
             Route::post('profile/{id}/update', 'UserController@profileUpdate')->name("profile.update");
+            Route::get('{id}/status', 'UserController@status')->name("status");
         });
 
         Route::group(['as' => 'about.', 'prefix' => 'about'], function() {
@@ -73,12 +74,7 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
         });
 
         Route::group(['as' => 'order.', 'prefix' => 'order'], function() {
-            Route::get('', 'ProductController@index')->name("index");
-            Route::get('create', 'ProductController@create')->name("create");
-            Route::post('store', 'ProductController@store')->name("store");
-            Route::get('{id}/edit', 'ProductController@edit')->name("edit");
-            Route::post('{id}/update', 'ProductController@update')->name("update");
-            Route::get('{id}/delete', 'ProductController@delete')->name("delete");
+            Route::get('', 'OrderController@index')->name("index");
         });
 
         Route::group(['as' => 'slider.', 'prefix' => 'slider'], function() {

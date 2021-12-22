@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Contact US</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="">Home</a></li>
                 <li>Contact</li>
             </ol>
         </div>
@@ -41,13 +41,10 @@
                             <h4>Call:</h4>
                             <p>+1 5589 55488 55s</p>
                         </div>
-                        
                     </div>
-                    
                 </div>
                 
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    
                     <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -70,9 +67,7 @@
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
-                    
                 </div>
-                
             </div>
             
         </div>
