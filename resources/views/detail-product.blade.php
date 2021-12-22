@@ -55,9 +55,15 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                 @if ($product->product_type == CategoryType::PRODUCT)
                 <div class="col-lg-4">
                     <div class="col-lg-12 mt-5 mt-lg-0">
-                        <a href="https://wa.me/{{ $website->no_contact }}" target="_blank" onclick="save()">
-                            <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
-                        </a>
+                        @if (logged_in_user())
+                            <a href="https://wa.me/{{ $website->no_contact }}" target="_blank" onclick="save()">
+                                <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
+                            </a>
+                        @else
+                            <a href="{{ route('auth.login') }}">
+                                <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
+                            </a>
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -71,7 +77,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        @if ($product->product_type == CategoryType::PRODUCT)
+        @if ($product->product_type == CategoryType::PRODUCT && logged_in_user())
         function save(){
             $.ajax({
                 type: "post",
