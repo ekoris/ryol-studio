@@ -20,7 +20,7 @@ class AdminController extends Controller
         $product = Product::where('slug', $slug)->first();
         $output_file = 'uploads/qr-code/'.time().'.png';
         $image = \QrCode::format('png')
-                 ->size(200)->errorCorrection('H')
+                 ->size(100)->errorCorrection('H')
                  ->generate(route('detail-product', $product->slug));
 
         Storage::disk('public')->put($output_file, $image);                    

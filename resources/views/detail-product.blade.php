@@ -36,7 +36,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="{{ $product->product_type == CategoryType::PRODUCT ? 'col-lg-8' : 'col-lg-12'  }}">
                     <div class="portfolio-info">
                         <h3>Project information</h3>
                         <ul>
@@ -44,7 +44,6 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                             <li><strong>Category</strong>: {{ $product->category->title }}</li>
                             <li><strong>QrCode</strong>: </li>
                         </ul>
-                        {!! $qrcode !!}
                     </div>
                     @if (isset($product->desciption))
                     <div class="portfolio-description">
@@ -72,13 +71,14 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        @if ($product->product_type == CategoryType::PRODUCT)
         function save(){
             $.ajax({
                 type: "post",
                 url: "{{ route('orders') }}",
                 data : {
                     _token : '{{ csrf_token() }}',
-                    user_id : '{{ logged_in_user()->id }}',
+                    user_id : '{{ logged_in_user()->id ?? 'null'    }}',
                     product_id : '{{ $product->id }}',
                 },
                 dataType: "json",
@@ -87,5 +87,6 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                 }
             });
         }
+        @endif
     </script>
 @endpush
