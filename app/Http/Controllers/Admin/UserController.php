@@ -129,7 +129,13 @@ class UserController extends Controller
             $data = [
                 'tagline' => $request->tagline,
                 'about' => $request->about ?? '-',
-                'cv' => $request->cv ?? '-'
+                'cv' => $request->cv ?? '-',
+                'email' => $request->email ?? '-',
+                'no_contact' => $request->no_contact ?? '-',
+                'address' => $request->address ?? '-',
+                'email' => $request->email ?? '-',
+                'contact' => $request->contact ?? '-',
+                'maps' => $request->maps ?? '-',
             ];
     
             if($request->hasFile('logo')) { 

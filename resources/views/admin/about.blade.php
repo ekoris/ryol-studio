@@ -45,8 +45,28 @@ use App\Constants\CategoryType;
                                 <textarea name="about" class="form-control" id="" cols="30" rows="10">{{ $website->about ?? null }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">cv</label>
+                                <label for="exampleInputEmail1">Cv</label>
                                 <textarea name="cv" id="" style="width: 100%">{{ $website->cv ?? null }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" name="email" value="{{ $website->email ?? null }}" required class="form-control" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Address</label>
+                                <input type="text" name="address" value="{{ $website->address ?? null }}" required class="form-control" placeholder="Enter Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Contact</label>
+                                <input type="text" name="contact" value="{{ $website->contact ?? null }}" required class="form-control" placeholder="Enter Contact">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Maps</label>
+                                <input type="text" name="maps" value="{{ $website->maps ?? null }}" required class="form-control" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Contact</label>
+                                <input type="text" name="no_contact" value="{{ $website->no_contact ?? null }}" required class="form-control" placeholder="Enter Order Contact">
                             </div>
                         </div>
                         <div class="box-footer">

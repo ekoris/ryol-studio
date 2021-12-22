@@ -16,14 +16,14 @@
     @stack('styles')
 </head>
 
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="hold-transition skin-red-light sidebar-mini" style="background-color: #6a5f40">
     <div class="wrapper">
-        <header class="main-header">
-            <a href="{{ asset('assets/admin') }}/index2.html" class="logo">
+        <header class="main-header" >
+            <a href="{{ asset('assets/admin') }}/" class="logo" style="background-color: #6a5f40 !important">
                 <span class="logo-mini"><b>Ryol</b>Std</span>
                 <span class="logo-lg"><b>Ryol</b>Studio</span>
             </a>
-            <nav class="navbar navbar-static-top">
+            <nav class="navbar navbar-static-top" style="background-color: #6a5f40 !important">
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>

@@ -2,6 +2,7 @@
 
 @php
 use App\Constants\CategoryType;
+$website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 @endphp
 
 @push('styles')
@@ -55,7 +56,7 @@ use App\Constants\CategoryType;
                 @if ($product->product_type == CategoryType::PRODUCT)
                 <div class="col-lg-4">
                     <div class="col-lg-12 mt-5 mt-lg-0">
-                        <a href="https://wa.me/082324613477" target="_blank" onclick="save()">
+                        <a href="https://wa.me/{{ $website->no_contact }}" target="_blank" onclick="save()">
                             <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
                         </a>
                     </div>
