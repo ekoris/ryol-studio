@@ -22,8 +22,8 @@ class ProductRepository {
     {
         $query = Product::where('product_type', CategoryType::PRODUCT)->latest();
 
-        if (!logged_in_user()->hasRole('admin')) {
-            if (logged_in_user()) {
+        if (logged_in_user()) {
+            if (!logged_in_user()->hasRole('admin')) {
                 $query->where(function($q){
                     $q->where('is_privilege', 0)->orWhereHas('productUserPrivileges', function($q){
                         $q->where('user_id', logged_in_user()->id)->where('is_privilege', 1);
