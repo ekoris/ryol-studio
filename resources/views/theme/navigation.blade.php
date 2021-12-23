@@ -1,4 +1,4 @@
-<header id="header" class="fixed header-inner-pages">
+<header id="header" class="fixed-top header-inner-pages">
 	<div class="container d-flex align-items-center justify-content-lg-between">
 		{{-- <h1 class="logo me-auto me-lg-0"><a href="">Ryol Studio<span>.</span></a></h1> --}}
 		<a href="/" class="logo me-auto me-lg-0"><img src="{{ asset('assets/frontend') }}/assets/img/logo.png" alt="" class="img-fluid"></a>
