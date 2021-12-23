@@ -58,7 +58,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        $products = $this->product->fetch([], false);
+        $products = $this->product->fetchProductFrontend([], false);
         return view('store', compact('products'));
     }
 

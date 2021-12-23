@@ -18,22 +18,53 @@ class ProductRepository {
         return Product::where('slug', $slug)->first();
     }
 
-    public function fetch($param = [], $paginate = false)
+    public function fetchProductFrontend($param = [], $paginate = false)
     {
         $query = Product::where('product_type', CategoryType::PRODUCT)->latest();
 
         if (logged_in_user()) {
-            if (!logged_in_user()->hasRole('admin')) {
-                $query->where(function($q){
-                    $q->where('is_privilege', 0)->orWhereHas('productUserPrivileges', function($q){
-                        $q->where('user_id', logged_in_user()->id)->where('is_privilege', 1);
-                    });
+            $query->where(function($q){
+                $q->where('is_privilege', 0)->orWhereHas('productUserPrivileges', function($q){
+                    $q->where('user_id', logged_in_user()->id)->where('is_privilege', 1);
                 });
-            }else{
-                $query->where('is_privilege', 0);
-            }
+            });
+        }else{
+            $query->where('is_privilege', 0);
         }
 
+
+        if (isset($param['q'])) {
+            $query->where('title', 'like' , '%'.$param['q'].'%');
+        }
+
+        if (isset($param['year'])) {
+            $query->where('year', $param['year']);
+        }
+
+        if (isset($param['category_id'])) {
+            $query->where('category_id', $param['category_id']);
+        }
+
+        if (isset($param['slug_category'])) {
+            $query->wherehas('category', function($q) use($param){
+                $q->where('slug', $param['slug_category']);
+            });
+        }
+
+        if (isset($param['slug_product'])) {
+            $query->where('slug', $param['slug_product']);
+        }
+
+        if ($paginate) {
+            return $query->paginate(30);
+        }
+
+        return $query->get();
+    }
+
+    public function fetch($param = [], $paginate = false)
+    {
+        $query = Product::where('product_type', CategoryType::PRODUCT)->latest();
 
         if (isset($param['q'])) {
             $query->where('title', 'like' , '%'.$param['q'].'%');
