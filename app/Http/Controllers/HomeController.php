@@ -66,6 +66,20 @@ class HomeController extends Controller
     {
         $params['slug_product'] =  $slug;
         $product = $this->product->findBySlug($slug);
+
+        if ($product->is_privilege == 1) {
+            if (logged_in_user()) {
+                $authorize = $product->whereHas('productUserPrivileges', function($q){
+                    $q->where('user_id', logged_in_user()->id);
+                })->first();
+
+                if (!$authorize) {
+                    return redirect('/');
+                }
+            }
+        }
+
+
         $qrcode = QrCode::size(200)->generate(route('detail-product', $product->slug));
 
         return view('detail-product', compact('params','slug', 'product','qrcode'));

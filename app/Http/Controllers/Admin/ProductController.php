@@ -38,8 +38,14 @@ class ProductController extends Controller
                 'year' => $request->year,
                 'description' => $request->description,
                 'product_type' => CategoryType::PRODUCT,
-                'category_id' => $request->category_id
+                'category_id' => $request->category_id,
+                'is_privilege' => $request->type_product
             ];
+
+            if ($request->type_product == 1) {
+                $data['users'] = $request->users;
+            }
+            
 
             if($request->hasFile('image')) { 
                 $file = $request->file('image');
@@ -84,8 +90,13 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'year' => $request->year,
                 'description' => $request->description,
-                'category_id' => $request->category_id
+                'category_id' => $request->category_id,
+                'is_privilege' => $request->type_product
             ];
+
+            if ($request->type_product == 1) {
+                $data['users'] = $request->users;
+            }
 
             if($request->hasFile('image')) { 
                 $file = $request->file('image');

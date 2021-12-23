@@ -7,6 +7,12 @@ use App\Constants\CategoryType;
 @push('styles')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset('assets/admin') }}/bower_components/select2/dist/css/select2.min.css">
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        border: 1px solid #ab5b5b;
+        color: black;
+    }
+</style>
 @endpush
 
 @section('body')
@@ -59,7 +65,22 @@ use App\Constants\CategoryType;
                                 <label for="exampleInputEmail1">Description</label>
                                 <textarea name="description" class="form-control" id="" cols="30" rows="10">{{ $product->description }}</textarea>
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Type Product ?</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="radio" name="type_product" value="0" class="type" id="" {{ $product->is_privilege == 0 ? 'checked' : '' }} > All User
+                                    <br>
+                                    <input type="radio" name="type_product" value="1" class="type" id="" {{ $product->is_privilege == 1 ? 'checked' : '' }}> Privilege
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">User Privilege</label>
+                                <select name="users[]" class="form-control users select2" {{ $product->is_privilege == 1 ? '' : 'disabled' }} multiple id="" placeholder="Pilih User">
+                                    @foreach (resolve(App\Repositories\Entities\User::class)->get() as $item)
+                                        <option value="{{ $item->id }}" {{ in_array($item->id, ($product->productUserPrivileges->pluck('user_id')->toArray() ?? [])) ? 'selected' : '' }}>{{ $item->name.' - '.$item->email }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -78,6 +99,13 @@ use App\Constants\CategoryType;
 <script src="{{ asset('assets/admin') }}/bower_components/select2/dist/js/select2.full.min.js"></script>
 
 <script>
+    $('.type').on('click', function () {
+        if ($(this).val() === '1') {
+            $('.users').attr('disabled', false);
+        } else{
+            $('.users').attr('disabled', true);
+        }
+    })
     $(function () {
         $('.select2').select2()
         $(".datepicker-input").datepicker({ 

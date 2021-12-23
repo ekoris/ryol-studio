@@ -36,14 +36,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required|unique:users',
+        ]);
+
         try {
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'status' => 1
             ];
 
-            User::create($data);
+            $user = User::create($data);
+
+            $user->assignRole($request->role);
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -64,6 +72,7 @@ class UserController extends Controller
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
+                'status' => 1
             ];
 
             if (isset($request->password)) {
@@ -71,6 +80,8 @@ class UserController extends Controller
             }
 
             User::where('id', $id)->update($data);
+            
+            User::find($id)->syncRoles($request->role);
         } catch (\Throwable $th) {
             throw $th;
         }

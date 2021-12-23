@@ -46,6 +46,7 @@ use App\Constants\CategoryType;
                                 <tr>
                                     <th>User</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -54,6 +55,7 @@ use App\Constants\CategoryType;
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->hasRole('admin') ? 'admin' : 'User' }}</td>
                                         <td>
                                             @if ($item->hasRole('user') && $item->status == 1)
                                                 <a href="{{ route('admin.user.status', $item->id) }}" type="button" class="btn btn-info btn-sm">Non Aktifkan</a>

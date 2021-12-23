@@ -35,10 +35,21 @@ use App\Constants\CategoryType;
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" name="email" required class="form-control" placeholder="Enter Email" required>
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
                                 <input type="password" name="password" required class="form-control" placeholder="Enter Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role</label>
+                                <select name="role" class="select2 form-control" id="">
+                                    <option value="">Choose Role</option>
+                                    <option value="admin">admin</option>
+                                    <option value="user">user</option>
+                                </select>
                             </div>
                         </div>
                         <div class="box-footer">

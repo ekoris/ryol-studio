@@ -40,6 +40,14 @@ use App\Constants\CategoryType;
                                 <label for="exampleInputEmail1">Password</label>
                                 <input type="password" name="password" class="form-control" placeholder="Enter Password">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role</label>
+                                <select name="role" class="select2 form-control" id="">
+                                    <option value="">Choose Role</option>
+                                    <option value="admin" {{ $user->hasRole('admin') ? 'selected' : '' }}>admin</option>
+                                    <option value="user" {{ $user->hasRole('user') ? 'selected' : '' }}>user</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
