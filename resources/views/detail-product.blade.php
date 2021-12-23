@@ -42,14 +42,9 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <ul>
                             <li><strong>Year</strong>: {{ $product->year }}</li>
                             <li><strong>Category</strong>: {{ $product->category->title }}</li>
+                            <li><strong>Description</strong>: <br>{!! $product->description != '' ? $product->description : '' !!}</li>
                         </ul>
                     </div>
-                    @if (isset($product->description))
-                    <div class="portfolio-description">
-                        <h2>Description</h2>
-                        <p>{!! $product->description !!}</p>
-                    </div>
-                    @endif
                 </div>
                 @if ($product->product_type == CategoryType::PRODUCT)
                 <div class="col-lg-4">
