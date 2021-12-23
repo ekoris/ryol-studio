@@ -183,9 +183,51 @@ class HomeController extends Controller
         return response('oke', 200);
     }
 
-    public function authenticationProduct(Request $request)
+    public function authenticationProduct(Request $request, $slug)
     {
-        return view('autenticate-product');
+        return view('autenticate-product', compact('slug'));
+    }
+
+    public function authenticationProductCheck(Request $request)
+    {
+
+        $params['slug_product'] =  $request->slug;
+        $product = $this->product->findBySlug($request->slug);
+        $slug = $request->slug;
+        return view('authenticate-product-detail', compact('product','slug'));
+
+
+        $credentials = [
+            'email' => $request->email
+        ];
+
+        $user = User::where('email', $request->email)->first();
+        if (empty($user)) {
+            return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
+        }
+
+        if (Auth::attempt($credentials)) {
+
+
+            $params['slug_product'] =  $request->slug;
+            $product = $this->product->findBySlug($request->slug);
+
+            if ($product->is_privilege == 1) {
+                if (logged_in_user()) {
+                    $authorize = $product->whereHas('productUserPrivileges', function($q){
+                        $q->where('user_id', logged_in_user()->id);
+                    })->first();
+
+                    if (!$authorize) {
+                        return redirect('/');
+                    }
+                }
+            }
+
+            return view('autenticate-product', compact('product'));
+        } else {
+            return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
+        }
     }
 }
 

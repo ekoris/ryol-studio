@@ -22,15 +22,18 @@ class ProductRepository {
     {
         $query = Product::where('product_type', CategoryType::PRODUCT)->latest();
 
-        if (logged_in_user()) {
-            $query->where(function($q){
-                $q->where('is_privilege', 0)->orWhereHas('productUserPrivileges', function($q){
-                    $q->where('user_id', logged_in_user()->id)->where('is_privilege', 1);
+        if (!logged_in_user()->hasRole('admin')) {
+            if (logged_in_user()) {
+                $query->where(function($q){
+                    $q->where('is_privilege', 0)->orWhereHas('productUserPrivileges', function($q){
+                        $q->where('user_id', logged_in_user()->id)->where('is_privilege', 1);
+                    });
                 });
-            });
-        }else{
-            $query->where('is_privilege', 0);
+            }else{
+                $query->where('is_privilege', 0);
+            }
         }
+
 
         if (isset($param['q'])) {
             $query->where('title', 'like' , '%'.$param['q'].'%');

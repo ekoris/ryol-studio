@@ -4,14 +4,19 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=appleGramond&display=swap');
+
+@font-face {
+  font-family: appleGramond;
+  src: url({{ asset('assets/frontend/font/AppleGaramond.ttf')}});
+}
 
 
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
   color: #6a5f40;
   background-color: #dbd5c4;
 }
@@ -383,7 +388,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 64px;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
 }
 #hero h1 span {
   color: #ffc451;
@@ -462,7 +467,7 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #aaaaaa;
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
 }
 .section-title h2::after {
   content: "";
@@ -478,7 +483,7 @@ section {
   font-size: 36px;
   font-weight: 600;
   text-transform: inherit;
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
   color: #6a5f40;
 }
 
@@ -488,7 +493,7 @@ section {
 .about .content h3 {
   font-weight: 700;
   font-size: 28px;
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
 }
 .about .content ul {
   list-style: none;
@@ -860,7 +865,7 @@ section {
   margin-top: 20px;
   color: #3b3b3b;
   font-size: 15px;
-  font-family: "Poppins", sans-serif;
+  font-family: "appleGramond", sans-serif;
   transition: ease-in-out 0.3s;
 }
 .counts .content .count-box a:hover {
