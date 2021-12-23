@@ -182,4 +182,10 @@ class HomeController extends Controller
 
         return response('oke', 200);
     }
+
+    public function authenticationProduct(Request $request)
+    {
+        return view('autenticate-product');
+    }
 }
+

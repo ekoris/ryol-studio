@@ -32,4 +32,5 @@ Route::post('do-register', 'HomeController@doRegister')->name("auth.do-register"
 Route::get('logout', 'HomeController@logout')->name("auth.logout");
 
 Route::post('orders', 'HomeController@orders')->name("orders");
+Route::get('autenticate-product', 'HomeController@authenticationProduct')->name("authentication.product");
 
