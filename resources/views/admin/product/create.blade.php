@@ -46,6 +46,10 @@ use App\Constants\CategoryType;
                                 <input type="text" name="year" id="" class="datepicker-input form-control" name="name" placeholder="Year Work" required>
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Production</label>
+                                <input type="text" name="date_production" id="" class="datepicker-month-year form-control" name="name" placeholder="Date Production" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">Category</label>
                                 <select name="category_id" class="form-control" id="">
                                     @foreach (resolve(App\Repositories\Entities\Category::class)->where('type', CategoryType::PRODUCT)->get() as $item)
@@ -108,6 +112,11 @@ use App\Constants\CategoryType;
     })
     $('.select2').select2()
     $(function () {
+        $(".datepicker-month-year").datepicker({ 
+            format: "yyyy-mm-dd",
+            autoclose: true, 
+            todayHighlight: true,
+        });
 
         $(".datepicker-input").datepicker({ 
             autoclose: true, 

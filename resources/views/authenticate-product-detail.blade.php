@@ -23,9 +23,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
-            
             <div class="row gy-4">
-                
                 <div class="col-lg-12">
                     <div class="portfolio-details-slider swiper">
                         <div class="align-items-center">
@@ -36,7 +34,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-                <div class="{{ $product->product_type == CategoryType::PRODUCT ? 'col-lg-8' : 'col-lg-12'  }}">
+                <div class="col-lg-12">
                     <div class="portfolio-info">
                         <h3>Project information</h3>
                         <ul>
@@ -44,7 +42,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                             <li><strong>Category</strong>: {{ $product->category->title }}</li>
                         </ul>
                     </div>
-                    @if (isset($product->desciption))
+                    @if (isset($product->description))
                     <div class="portfolio-description">
                         <h2>Description</h2>
                         <p>{!! $product->description !!}</p>
@@ -56,7 +54,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <div class="portfolio-info">
                             <h3>Authenticity Data</h3>
                             <ul>
-                                <li><strong>Year</strong>: {{ date('F Y') }} /  {{ $product->title }}</li>
+                                <li><strong>Year</strong>: {{ date('F Y', strtotime($product->date_production)) }} /  {{ $product->title }}</li>
                             </ul>
                         </div>
                     </div>

@@ -42,10 +42,9 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <ul>
                             <li><strong>Year</strong>: {{ $product->year }}</li>
                             <li><strong>Category</strong>: {{ $product->category->title }}</li>
-                            <li><strong>QrCode</strong>: </li>
                         </ul>
                     </div>
-                    @if (isset($product->desciption))
+                    @if (isset($product->description))
                     <div class="portfolio-description">
                         <h2>Description</h2>
                         <p>{!! $product->description !!}</p>

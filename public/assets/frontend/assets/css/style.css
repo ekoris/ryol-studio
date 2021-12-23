@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: appleGramond;
-  src: url({{ asset('assets/frontend/font/AppleGaramond.ttf')}});
+  src: url('../font/AppleGaramond-Bold.ttf');
 }
 
 
@@ -32,7 +32,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Poopins", sans-serif;
+  font-family: "appleGramond", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -184,6 +184,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 .navbar {
   padding: 0;
+  font-family: "appleGramond", sans-serif !important;
 }
 .navbar ul {
   margin: 0;

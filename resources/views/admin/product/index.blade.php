@@ -12,11 +12,11 @@ use App\Constants\CategoryType;
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Art Work
+            Product
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Art Work</li>
+            <li class="active">Product</li>
         </ol>
     </section>
     <section class="content">
@@ -54,8 +54,8 @@ use App\Constants\CategoryType;
                     <div class="box-body">
                         <div class="row">
                             @forelse ($products as $item)
-                            <div class="col-sm-4 col-md-2 col-lg-3">
-                                <div class="card mb-4 box-shadow">
+                            <div class="col-md-2 col-lg-3">
+                                <div class="card mb-4 box-shadow" style="padding-bottom: 30px">
                                     <img class="card-img-top" data-src="{{ $item->image_url }}" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;object-fit: scale-down;" src="{{ $item->image_url }}" data-holder-rendered="true">
                                     <div class="card-body">
                                         <p class="card-text">{{ $item->title }}</p>
@@ -63,7 +63,10 @@ use App\Constants\CategoryType;
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="{{ route('admin.product.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
                                             <a href="{{ route('admin.product.delete', $item->id) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">delete</a>
-                                            <a href="{{ route('admin.qrcode', $item->slug) }}" target="_blank" class="btn btn-sm btn-primary">Download QR Code</a>
+                                            <br>
+                                            <br>
+                                            <a href="{{ route('admin.qrcode', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code</a>
+                                            <a href="{{ route('admin.qrcode-appreciation', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code Appreciation</a>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +74,7 @@ use App\Constants\CategoryType;
                             @empty
                             <div class="card text-center">
                                 <div class="card-header">
-                                    Art Work
+                                    Product
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Data Empty</h5>

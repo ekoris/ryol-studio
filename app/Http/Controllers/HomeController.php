@@ -190,13 +190,6 @@ class HomeController extends Controller
 
     public function authenticationProductCheck(Request $request)
     {
-
-        $params['slug_product'] =  $request->slug;
-        $product = $this->product->findBySlug($request->slug);
-        $slug = $request->slug;
-        return view('authenticate-product-detail', compact('product','slug'));
-
-
         $credentials = [
             'email' => $request->email
         ];
@@ -206,11 +199,10 @@ class HomeController extends Controller
             return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
         }
 
-        if (Auth::attempt($credentials)) {
-
-
+        if (Auth::loginUsingId($user->id)) {
             $params['slug_product'] =  $request->slug;
             $product = $this->product->findBySlug($request->slug);
+            $slug = $request->slug;
 
             if ($product->is_privilege == 1) {
                 if (logged_in_user()) {
@@ -224,7 +216,7 @@ class HomeController extends Controller
                 }
             }
 
-            return view('autenticate-product', compact('product'));
+            return view('authenticate-product-detail', compact('product','slug'));
         } else {
             return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
         }

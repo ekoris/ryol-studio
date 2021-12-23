@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
         Route::get('sign-out', 'AuthController@signOut')->name("sign-out");
         Route::get('', 'AdminController@index')->name("index");
         Route::get('qrcode/{slug}', 'AdminController@qrcode')->name("qrcode");
+        Route::get('qrcode-appreciation/{slug}', 'AdminController@qrcodeAppreciation')->name("qrcode-appreciation");
         Route::group(['as' => 'user.', 'prefix' => 'user'], function() {
             Route::get('', 'UserController@index')->name("index");
             Route::get('create', 'UserController@create')->name("create");

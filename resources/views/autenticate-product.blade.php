@@ -1,5 +1,10 @@
 @extends('theme.master')
 
+@php
+    $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
+@endphp
+
+
 @push('styles')
 @endpush
 
@@ -25,7 +30,7 @@
                         <div class="row">
                             <div class="text-center">
                                 <div class="col-lg-6" style="float:none;margin:auto;padding-bottom: 20px">
-                            		<a href="/" class="logo me-auto me-lg-0"><img src="{{ asset('assets/frontend') }}/assets/img/logo.png" alt="" class="img-fluid" style="width: 30%"></a>
+                            		<a href="/" class="logo me-auto me-lg-0"><img src="{{ $website->logo_url }}" alt="" class="img-fluid" style="width: 30%"></a>
                                     <h3>
                                         Authenticity Access
                                     </h3>

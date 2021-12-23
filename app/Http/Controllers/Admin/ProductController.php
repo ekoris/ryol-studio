@@ -39,7 +39,8 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'product_type' => CategoryType::PRODUCT,
                 'category_id' => $request->category_id,
-                'is_privilege' => $request->type_product
+                'is_privilege' => $request->type_product,
+                'date_production' => date('Y-m-d', strtotime($request->date_production))
             ];
 
             if ($request->type_product == 1) {
@@ -91,7 +92,8 @@ class ProductController extends Controller
                 'year' => $request->year,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
-                'is_privilege' => $request->type_product
+                'is_privilege' => $request->type_product,
+                'date_production' => date('Y-m-d', strtotime($request->date_production))
             ];
 
             if ($request->type_product == 1) {

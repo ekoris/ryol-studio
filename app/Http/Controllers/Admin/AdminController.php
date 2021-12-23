@@ -26,6 +26,18 @@ class AdminController extends Controller
         Storage::disk('public')->put($output_file, $image);                    
 
         return Storage::disk('public')->download($output_file);
+    }
 
+    public function qrcodeAppreciation($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        $output_file = 'uploads/qr-code/'.time().'.png';
+        $image = \QrCode::format('png')
+                 ->size(100)->errorCorrection('H')
+                 ->generate(route('authentication.product', $product->slug));
+
+        Storage::disk('public')->put($output_file, $image);                    
+
+        return Storage::disk('public')->download($output_file);
     }
 }
