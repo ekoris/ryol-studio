@@ -12,7 +12,6 @@ use App\Repositories\Entities\WebsiteManagement;
 use App\Repositories\ProductRepository;
 use App\Repositories\UpCommingRepository;
 use App\Repositories\WebsiteManagementRepository;
-use App\Repositories\Entities\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
