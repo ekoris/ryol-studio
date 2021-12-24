@@ -12,6 +12,7 @@ use App\Repositories\Entities\WebsiteManagement;
 use App\Repositories\ProductRepository;
 use App\Repositories\UpCommingRepository;
 use App\Repositories\WebsiteManagementRepository;
+use App\Repositories\Entities\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -206,12 +207,9 @@ class HomeController extends Controller
 
             if ($product->is_privilege == 1) {
                 if (logged_in_user()) {
-                    $authorize = $product->whereHas('productUserPrivileges', function($q){
-                        $q->where('user_id', logged_in_user()->id);
-                    })->first();
-
+                    $authorize = Order::where('user_id', logged_in_user()->id)->where('product_id', $product->id)->first();
                     if (!$authorize) {
-                        return redirect('/');
+                        return redirect()->route('authentication.product', $request->slug)->with(['error_product' => true]);
                     }
                 }
             }

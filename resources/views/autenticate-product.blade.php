@@ -41,6 +41,12 @@
                                             Email Not Registered !!
                                         </div>
                                     @endif
+
+                                    @if (Session::get('error_product'))
+                                        <div class="alert alert-danger" role="alert" style="padding-top: 20px;">
+                                            You haven't bought this product yet !!
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-lg-6" style="float:none;margin:auto;">
                                     <button class="btn-block" type="submit">Check</button>
