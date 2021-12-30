@@ -201,9 +201,8 @@ class ProductController extends Controller
     {
         $productPhotos = ProductPhoto::where('product_id', $productId)->whereNotIn('image', $image)->get();
         foreach ($productPhotos as $key => $value) {
-            unlink(storage_path('app/public/uploads/image/'.    $value->image));
+            unlink(storage_path('app/public/uploads/image/'.$value->image));
+            ProductPhoto::where('id', $value->id)->delete();
         }
-
-        ProductPhoto::where('product_id', $productId)->whereNotIn('image', $image)->delete();
     }
 }
