@@ -19,7 +19,7 @@
             <h2>Curiciulum Vitae - {{ $cv->year }}</h2>
             <ol>
                 @foreach (resolve(\App\Repositories\Entities\Cv::class)->groupBy('year')->get() as $item)
-                    <li><a class="{{ Request::get('year') == $item->year ? 'active' : '' }}" href="{{ route('about.cv.periodic', ['year' => $item->year]) }}">{{ $item->year ?? '' }}</a></li>
+                    <li><a class="{{ $cv->year == $item->year ? 'active' : '' }}" href="{{ route('about.cv.periodic', ['year' => $item->year]) }}">{{ $item->year ?? '' }}</a></li>
                 @endforeach
             </ol>
         </div>

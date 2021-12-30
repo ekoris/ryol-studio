@@ -101,7 +101,7 @@ class HomeController extends Controller
 
     public function cvPeriodic(Request $request)
     {
-        $cv = Cv::orderBy('year', 'desc')->first();
+        $cv = Cv::orderBy('year', 'desc');
 
         if ($request->has('year')) {
             $cv->where('year', $request->year);
