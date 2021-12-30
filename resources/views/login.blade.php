@@ -8,10 +8,6 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Login or Register</h2>
-            <ol>
-                <li><a href="">Home</a></li>
-                <li>Login or Register</li>
-            </ol>
         </div>
     </div>
     

@@ -8,10 +8,6 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Project</h2>
-            <ol>
-                <li><a href="">Home</a></li>
-                <li>Art Work</li>
-            </ol>
         </div>
     </div>
 </section>

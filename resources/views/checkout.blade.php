@@ -27,10 +27,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Checkout</h2>
-            <ol>
-                <li><a href="">Home</a></li>
-                <li>Checkout Order</li>
-            </ol>
+            
         </div>
     </div>
     <section id="portfolio-details" class="portfolio-details">

@@ -13,10 +13,6 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Project Detail</h2>
-            <ol>
-                <li><a href="">Home</a></li>
-                <li>Detail</li>
-            </ol>
         </div>
     </div>
     
