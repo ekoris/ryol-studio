@@ -68,6 +68,18 @@ use App\Constants\CategoryType;
                                 <label for="exampleInputEmail1">Order Contact</label>
                                 <input type="text" name="no_contact" value="{{ $website->no_contact ?? null }}" required class="form-control" placeholder="Enter Order Contact">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Link WA</label>
+                                <input type="text" name="link_wa" value="{{ $website->link_wa ?? null }}" class="form-control" placeholder="Enter Link WA">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Link Twitter</label>
+                                <input type="text" name="link_twitter" value="{{ $website->link_twitter ?? null }}" class="form-control" placeholder="Enter Link Twitter">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Link IG</label>
+                                <input type="text" name="link_ig" value="{{ $website->link_ig ?? null }}" class="form-control" placeholder="Enter Link Ig">
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

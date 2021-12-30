@@ -147,6 +147,9 @@ class UserController extends Controller
                 'email' => $request->email ?? '-',
                 'contact' => $request->contact ?? '-',
                 'maps' => $request->maps ?? '-',
+                'link_wa' => $request->link_wa ?? '-',
+                'link_twitter' => $request->link_twitter ?? '-',
+                'link_ig' => $request->link_ig ?? '-',
             ];
     
             if($request->hasFile('logo')) { 
