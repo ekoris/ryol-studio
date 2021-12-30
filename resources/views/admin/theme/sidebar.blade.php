@@ -10,6 +10,7 @@
             <li class="header">Website Management</li>
             <li class="{{ Request::routeIs('admin.slider.*') ? 'active' : '' }}"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-image"></i> <span>Slider</span></a></li>
             <li class="{{ Request::routeIs('admin.category.*') ? 'active' : '' }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-bars"></i> <span>Category</span></a></li>
+            <li class="{{ Request::routeIs('admin.variation.*') ? 'active' : '' }}"><a href="{{ route('admin.variation.index') }}"><i class="fa fa-tags"></i> <span>Variation</span></a></li>
             <li class="{{ Request::routeIs('admin.about.*') ? 'active' : '' }}"><a href="{{ route('admin.about.index') }}"><i class="fa fa-cog"></i> <span>About</span></a></li>
             <li class="{{ Request::routeIs('admin.user.*') ? 'active' : '' }}"><a href="{{ route('admin.user.index') }}"><i class="fa fa-users"></i> <span>User</span></a></li>
             <li class="{{ Request::routeIs('admin.profile.*') ? 'active' : '' }}"><a href="{{ route('admin.user.profile') }}"><i class="fa fa-circle-o text-white "></i> <span>Profile</span></a></li>

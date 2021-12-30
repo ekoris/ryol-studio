@@ -58,13 +58,42 @@ use App\Constants\CategoryType;
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Image</label>
+                                <label for="exampleInputEmail1">Image Thumbnail</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type='file' name="image" onchange="readURL(this);"/>
                                     <br>
-                                    <img id="blah" style="height: 600px;" src="{{ $product->image_url }}" alt="your image" />
+                                    <img id="blah" style="height: 200px;" src="{{ $product->image_url }}" alt="your image" />
                                 </div>
                             </div>
+                            <div class="form-group">
+								<div class="upload__box" style="box-sizing: border-box;">
+									<div class="upload__btn-box">
+										<label class="upload__btn">
+											<p>Others Image</p>
+											<input type="file" multiple="" data-max_length="20" name="file[]" class="upload__inputfile">
+										</label>
+									</div>
+									<div class="upload__img-wrap">
+										<div class="upload__img-box">
+											<div style="width:100%;">
+												<div class="row img-preview">
+                                                    @forelse ($product->productPhotos as $key => $item)
+                                                    <div class='col-md-2'>
+                                                        <input type="hidden" name="images_before[]" value="{{ $item->image }}">
+                                                        <img width="100%" src="{{ $item->image_url }}" data-number="{{ $key }}" data-file="{{ $key }}"/>
+                                                        <div class="upload__img-close" style="margin-top:30px">
+                                                            <button class="btn btn-danger btn-sm btn-block">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                    @empty
+                                                        
+                                                    @endforelse
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Description</label>
                                 <textarea name="description" class="form-control" id="" cols="30" rows="10">{{ $product->description }}</textarea>
@@ -85,6 +114,34 @@ use App\Constants\CategoryType;
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+								<label for="exampleInputEmail1">Available Variation</label>
+                                @php
+                                    $variations = resolve(App\Repositories\Entities\ProductVariation::class)->where('product_id', $product->id)->pluck('variation_id')->toArray();
+                                @endphp
+								<select name="variations[]" class="form-control select2" multiple id="" placeholder="Choose Available Variation">
+									@foreach (resolve(App\Repositories\Entities\Variation::class)->get() as $item)
+									<option value="{{ $item->id }}" {{ in_array($item->id, $variations) ? 'selected' : '' }}>{{ $item->name }}</option>
+									@endforeach
+								</select>
+							</div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Qurency ?</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="radio" name="qurency" value="Rp" class="type" id="" {{ $product->qurency == 'Rp' ? 'checked' : '' }} > Rp (IDR) 
+                                    <input type="radio" name="qurency" value="$" class="type" id="" {{ $product->qurency == '$' ? 'checked' : '' }}> Usd
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Price</label>
+                                <input type="number" class="form-control" name="price" value="{{ $product->price }}" placeholder="Price">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sold ?</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="checkbox" name="is_sold" value="Rp" class="type" id="" {{ $product->is_sold == 1 ? 'checked' : '' }} >
+                                </div>
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -103,6 +160,69 @@ use App\Constants\CategoryType;
 <script src="{{ asset('assets/admin') }}/bower_components/select2/dist/js/select2.full.min.js"></script>
 
 <script>
+    jQuery(document).ready(function () {
+		ImgUpload();
+	});
+	
+	function ImgUpload() {
+		var imgWrap = "";
+		var imgArray = [];
+		
+		$('.upload__inputfile').each(function () {
+			$(this).on('change', function (e) {
+				imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap').find('.upload__img-box').find('.img-preview');
+				var maxLength = $(this).attr('data-max_length');
+				
+				var files = e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+				var iterator = 0;
+				
+				
+				filesArr.forEach(function (f, index) {
+					
+					if (!f.type.match('image.*')) {
+						return;
+					}
+					
+					if (imgArray.length > maxLength) {
+						return false
+					} else {
+						var len = 0;
+						for (var i = 0; i < imgArray.length; i++) {
+							if (imgArray[i] !== undefined) {
+								len++;
+							}
+						}
+						if (len > maxLength) {
+							return false;
+						} else {
+							imgArray.push(f);
+							
+							var reader = new FileReader();
+							reader.onload = function (e) {
+								var html = "<div class='col-md-2'><input type='hidden' name='images[]' value='" + e.target.result + "' ><img width='100%' src='" + e.target.result + "' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "'/><div class='upload__img-close' style='margin-top:30px'><button class='btn btn-danger btn-sm btn-block'>Remove</button></div></div>";
+								imgWrap.append(html);
+								iterator++;
+							}
+							reader.readAsDataURL(f);
+						}
+					}
+				});
+			});
+		});
+		
+		$('body').on('click', ".upload__img-close", function (e) {
+			var file = $(this).parent().data("file");
+			for (var i = 0; i < imgArray.length; i++) {
+				if (imgArray[i].name === file) {
+					imgArray.splice(i, 1);
+					break;
+				}
+			}
+			$(this).parent().remove();
+		});
+	}
+
     $('.type').on('click', function () {
         if ($(this).val() === '1') {
             $('.users').attr('disabled', false);

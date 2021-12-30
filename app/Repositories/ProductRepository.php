@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Constants\CategoryType;
 use App\Repositories\Entities\Product;
+use App\Repositories\Entities\ProductPhoto;
 use App\Repositories\Entities\ProductUserPrivilege;
+use App\Repositories\Entities\ProductVariation;
 
 class ProductRepository {
 
@@ -98,14 +100,32 @@ class ProductRepository {
     public function create($data)
     {
         $productData = $data;
-        unset($productData['users']);
+        unset(
+            $productData['users'],
+            $productData['images'],
+            $productData['variations'],
+        );
 
         $product =  Product::create($productData);
+
+        foreach (($data['images'] ?? []) as $key => $value) {
+            ProductPhoto::create([
+                'product_id' => $product->id,
+                'image' => $value
+            ]);
+        }
 
         foreach (($data['users'] ?? []) as $key => $value) {
             ProductUserPrivilege::create([
                 'user_id' => $value,
                 'product_id' => $product->id
+            ]);
+        }
+
+        foreach (($data['variations'] ?? []) as $key => $value) {
+            ProductVariation::create([
+                'product_id' => $product->id,
+                'variation_id' => $value
             ]);
         }
     }
@@ -114,8 +134,13 @@ class ProductRepository {
     {
         $product = Product::find($id);
 
+
         $productData = $data;
-        unset($productData['users']);
+        unset(
+            $productData['users'],
+            $productData['images'],
+            $productData['variations'],
+        );
 
         $product->update($productData);
 
@@ -125,6 +150,21 @@ class ProductRepository {
             ProductUserPrivilege::create([
                 'user_id' => $value,
                 'product_id' => $id
+            ]);
+        }
+
+        foreach (($data['images'] ?? []) as $key => $value) {
+            ProductPhoto::create([
+                'product_id' => $product->id,
+                'image' => $value
+            ]);
+        }
+
+        ProductVariation::where('product_id', $product->id)->delete();
+        foreach (($data['variations'] ?? []) as $key => $value) {
+            ProductVariation::create([
+                'product_id' => $product->id,
+                'variation_id' => $value
             ]);
         }
     }

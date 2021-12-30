@@ -17,12 +17,12 @@
 --------------------------------------------------------------*/
 body {
   font-family: "appleGramond", sans-serif;
-  color: #6a5f40;
-  background-color: #dbd5c4;
+  color: #6f6860;
+  background-color: #f8f7f3;
 }
 
 a {
-  color: #6a5f40;
+  color: #6f6860;
   text-decoration: none;
 }
 
@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0 10px 30px;
   font-size: 17px;
   font-weight: 500;
-  color: #6a5f40;
+  color: #6f6860;
   white-space: nowrap;
   transition: 0.3s;
   text-transform: uppercase;
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #6a5f40;
+  color: #6f6860;
 }
 .navbar .dropdown ul {
   display: block;
@@ -244,7 +244,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  background-color: #6a5f40;
+  background-color: #6f6860;
 }
 .navbar .dropdown:hover > ul {
   opacity: 1;
@@ -275,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #6a5f40;
+  color: #6f6860;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -486,7 +486,7 @@ section {
   font-weight: 600;
   text-transform: inherit;
   font-family: "appleGramond", sans-serif;
-  color: #6a5f40;
+  color: #6f6860;
 }
 
 /*--------------------------------------------------------------
@@ -1063,11 +1063,11 @@ section {
 --------------------------------------------------------------*/
 .contact .info {
   width: 100%;
-  background: #dbd5c4;
+  background: #f8f7f3;
 }
 .contact .info i {
   font-size: 20px;
-  background: #6a5f40;
+  background: #6f6860;
   color: #151515;
   float: left;
   width: 44px;
@@ -1089,14 +1089,14 @@ section {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px;
-  color: #6a5f40;
+  color: #6f6860;
 }
 .contact .info .email, .contact .info .phone {
   margin-top: 40px;
 }
 .contact .php-email-form {
   width: 100%;
-  background: #dbd5c4;
+  background: #f8f7f3;
 }
 .contact .php-email-form .form-group {
   padding-bottom: 8px;
@@ -1186,14 +1186,14 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background:#dbd5c4;
+  background:#f8f7f3;
   min-height: 40px;
   margin-top: 74px;
 }
 .breadcrumbs h2 {
   font-size: 28px;
   font-weight: 1000;
-  color: #6a5f40;
+  color: #6f6860;
 }
 .breadcrumbs ol {
   display: flex;
@@ -1356,4 +1356,9 @@ section {
   text-align: center;
   font-size: 13px;
   color: #fff;
+}
+
+.btn-custom{
+  background-color: #6f6860;
+  color: white;
 }

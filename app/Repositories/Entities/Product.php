@@ -45,5 +45,15 @@ class Product extends Model
     {
         return $this->hasMany(ProductUserPrivilege::class, 'product_id', 'id');
     }
+    
+    public function productPhotos()
+    {
+        return $this->hasMany(ProductPhoto::class, 'product_id', 'id');
+    }
+
+    public function productVariations()
+    {
+        return $this->hasMany(ProductVariation::class, 'product_id', 'id');
+    }
 
 }

@@ -23,20 +23,25 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
-            
             <div class="row gy-4">
-                
                 <div class="col-lg-12">
                     <div class="portfolio-details-slider swiper">
-                        <div class="align-items-center">
+                        <div class="swiper-wrapper align-items-center">
                             <div class="swiper-slide">
                                 <img src="{{ $product->image_url }}" alt="">
                             </div>
+                            @forelse (($product->productPhotos ?? []) as $item)
+                                <div class="swiper-slide">  
+                                    <img src="{{ $item->image_url }}" alt="">
+                                </div>
+                            @empty
+                                
+                            @endforelse
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-                <div class="{{ $product->product_type == CategoryType::PRODUCT ? 'col-lg-8' : 'col-lg-12'  }}">
+                <div class="col-md-12">
                     <div class="portfolio-info">
                         <h3>Project information</h3>
                         <ul>
@@ -46,21 +51,6 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         </ul>
                     </div>
                 </div>
-                @if ($product->product_type == CategoryType::PRODUCT)
-                <div class="col-lg-4">
-                    <div class="col-lg-12 mt-5 mt-lg-0">
-                        @if (logged_in_user())
-                            <a href="https://wa.me/{{ $website->no_contact }}" target="_blank" onclick="save()">
-                                <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
-                            </a>
-                        @else
-                            <a href="{{ route('auth.login') }}">
-                                <button type="button" id="buy" class="btn btn-danger btn-snm btn-block" style="width: 100%">Order</button>
-                            </a>
-                        @endif
-                    </div>
-                </div>
-                @endif
             </div>
         </div>
     </section><!-- End Portfolio Details Section -->

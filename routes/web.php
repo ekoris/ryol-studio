@@ -21,6 +21,7 @@ Route::get('art-work/{param}', 'HomeController@artWork')->name("art-work");
 Route::get('up-comming/{param}', 'HomeController@upComming')->name("up-comming");
 Route::get('store/', 'HomeController@store')->name("store");
 Route::get('detail-product/{slug}', 'HomeController@detailProduct')->name("detail-product");
+Route::get('detail-product-store/{slug}', 'HomeController@detailProductStore')->name("detail-product-store");
 
 Route::get('about/cv', 'HomeController@cv')->name("about.cv");
 Route::get('about/contact-us', 'HomeController@contactUs')->name("about.contact-us");
@@ -34,4 +35,12 @@ Route::get('logout', 'HomeController@logout')->name("auth.logout");
 Route::post('orders', 'HomeController@orders')->name("orders");
 Route::get('autenticate-product/{slug}', 'HomeController@authenticationProduct')->name("authentication.product");
 Route::post('autenticate-product-check', 'HomeController@authenticationProductCheck')->name("authentication.product.check");
+
+
+Route::group(['as' => 'order.', 'prefix' => 'order'], function() {
+    Route::post('add-to-cart', 'OrderController@addToCart')->name("add-to-cart");
+    Route::post('checkout', 'OrderController@checkout')->name("checkout");
+    Route::post('proced-checkout', 'OrderController@procedCheckout')->name("proced.checkout");
+    Route::get('success', 'OrderController@success')->name("success");
+});
 

@@ -47,6 +47,15 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::get('{id}/delete', 'CategoryController@delete')->name("delete");
         });
 
+        Route::group(['as' => 'variation.', 'prefix' => 'variation'], function() {
+            Route::get('', 'VariationController@index')->name("index");
+            Route::get('create', 'VariationController@create')->name("create");
+            Route::post('store', 'VariationController@store')->name("store");
+            Route::get('{id}/edit', 'VariationController@edit')->name("edit");
+            Route::post('{id}/update', 'VariationController@update')->name("update");
+            Route::get('{id}/delete', 'VariationController@delete')->name("delete");
+        });
+
         Route::group(['as' => 'up-comming.', 'prefix' => 'up-comming'], function() {
             Route::get('', 'UpCommingController@index')->name("index");
             Route::get('create', 'UpCommingController@create')->name("create");

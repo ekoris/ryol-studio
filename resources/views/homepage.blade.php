@@ -60,11 +60,11 @@
             </div>
             <div id="slides-aux" class="slides mask">
                 @foreach (resolve(App\Repositories\Entities\Slider::class)->get() as $key => $item)
-                    <h2 class="slide-title slide" data-index="{{ $key }}"><a href="#">#{{ $item->year }}</a></h2>
+                    <h2 class="slide-title slide" data-index="{{ $key }}"><a href="#" style="display: none">#{{ $item->year }}</a></h2>
                 @endforeach
             </div>
         </div>
-        <nav id="slider-nav">
+        <nav id="slider-nav" style="z-index: -1 !important">
             <span class="current"></span>
             <span class="sep"></span>
             <span class="total"></span>

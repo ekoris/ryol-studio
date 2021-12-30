@@ -40,7 +40,7 @@
                             <p>{{ $item->year.' - '.$item->category->title }}</p>
                             <div class="portfolio-links">
                                 <a href="{{ $item->image_url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="{{ route('detail-product', $item->slug) }}" title="More Details"><i class="bx bx-link"></i></a>
+                                <a href="{{ route('detail-product-store', $item->slug) }}" title="More Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                     </div>

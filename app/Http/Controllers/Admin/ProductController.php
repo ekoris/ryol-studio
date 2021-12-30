@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Constants\CategoryType;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Repositories\Entities\Product;
+use App\Repositories\Entities\ProductPhoto;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -40,13 +43,16 @@ class ProductController extends Controller
                 'product_type' => CategoryType::PRODUCT,
                 'category_id' => $request->category_id,
                 'is_privilege' => $request->type_product,
-                'date_production' => date('Y-m-d', strtotime($request->date_production))
+                'date_production' => date('Y-m-d', strtotime($request->date_production)),
+                'variations' => $request->variations,
+                'price' => $request->price,
+                'qurency' => $request->qurency,
+                'is_sold' => $request->is_sold ?? 0,
             ];
 
             if ($request->type_product == 1) {
                 $data['users'] = $request->users;
             }
-            
 
             if($request->hasFile('image')) { 
                 $file = $request->file('image');
@@ -67,7 +73,25 @@ class ProductController extends Controller
 
                 $data['image'] = $file->getClientOriginalName();
             }
-            
+
+            if($request->has('images')) { 
+                foreach ($request->images as $key => $value) {
+                    $folderPath = storage_path('app/public/uploads/image/');
+                    $img = $value;
+                    
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = uniqid().'.'.$image_type;
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
+                    $images[] = $fileName;
+                }
+
+                $data['images'] = $images;
+            }
+
             $this->product->create($data);
             notice('success', 'Berhasil Disimpan');
         } catch (\Throwable $th) {
@@ -93,11 +117,37 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'is_privilege' => $request->type_product,
-                'date_production' => date('Y-m-d', strtotime($request->date_production))
+                'date_production' => date('Y-m-d', strtotime($request->date_production)),
+                'variations' => $request->variations,
+                'price' => $request->price,
+                'qurency' => $request->qurency,
+                'is_sold' => $request->is_sold ?? 0,
             ];
 
             if ($request->type_product == 1) {
                 $data['users'] = $request->users;
+            }
+
+            if ($request->has('images_before')) {
+                $this->removeImage($id, $request->images_before);
+            }
+
+            if($request->has('images')) { 
+                foreach ($request->images as $key => $value) {
+                    $folderPath = storage_path('app/public/uploads/image/');
+                    $img = $value;
+                    
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = uniqid().'.'.$image_type;
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
+                    $images[] = $fileName;
+                }
+
+                $data['images'] = $images;
             }
 
             if($request->hasFile('image')) { 
@@ -139,5 +189,15 @@ class ProductController extends Controller
         }
 
         return redirect()->route('admin.product.index');
+    }
+
+    private function removeImage($productId, $image)
+    {
+        $productPhotos = ProductPhoto::where('product_id', $productId)->whereNotIn('image', $image)->get();
+        foreach ($productPhotos as $key => $value) {
+            unlink(storage_path('app/public/uploads/image/'.    $value->image));
+        }
+
+        ProductPhoto::where('product_id', $productId)->whereNotIn('image', $image)->delete();
     }
 }
