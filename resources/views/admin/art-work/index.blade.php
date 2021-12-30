@@ -59,7 +59,7 @@ use App\Constants\CategoryType;
                                     <img class="card-img-top" data-src="{{ $item->image_url }}" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;object-fit: scale-down" src="{{ $item->image_url }}" data-holder-rendered="true">
                                     <div class="card-body">
                                         <p class="card-text">{{ $item->title }}</p>
-                                        <small><i>{{ $item->year.' - '.$item->category->title }}</i></small>
+                                        <small><i>{{ $item->year.' - '.($item->category->title ?? '') }}</i></small>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="{{ route('admin.art-work.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
                                             <a href="{{ route('admin.art-work.delete', $item->id) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">delete</a>

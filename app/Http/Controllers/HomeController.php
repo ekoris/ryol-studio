@@ -36,8 +36,10 @@ class HomeController extends Controller
     {
         if (is_numeric($param)) {
             $params['year'] =  $param;
-        }else{
-            $params['slug_category'] =  $param;
+        }
+
+        if (isset($request->category)) {
+            $params['slug_category'] = $request->category;
         }
 
         $products = $this->artWork->fetch($params, false);

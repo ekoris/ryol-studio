@@ -1,6 +1,12 @@
 @extends('theme.master')
 
 @push('styles')
+<style>
+
+    ol li a:hover, .active, .active:focus, .navbar li:hover > a {
+       color:#aaaaaa !important;
+    }
+</style>
 @endpush
 
 @section('body')
@@ -8,6 +14,11 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Project</h2>
+            <ol>
+                @foreach (resolve(\App\Repositories\Entities\Category::class)->where('type', 3)->get() as $item)
+                    <li><a class="{{ Request::get('category') == $item->slug ? 'active' : '' }}" href="{{ route('art-work', [$param, 'category' => $item->slug]) }}">{{ $item->title ?? '' }}</a></li>
+                @endforeach
+            </ol>
         </div>
     </div>
 </section>

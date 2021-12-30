@@ -29,16 +29,19 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($products as $item)
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-wrap">
-                        <img src="{{ $item->image_url }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>{{ $item->title }}</h4>
-                            <p>{{ $item->year.' - '.$item->category->title }}</p>
-                            <div class="portfolio-links">
-                                <a href="{{ $item->image_url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="{{ route('detail-product-store', $item->slug) }}" title="More Details"><i class="bx bx-link"></i></a>
+                    <a href="{{ route('detail-product-store', $item->slug) }}">
+                        <div class="portfolio-wrap">
+                            <img src="{{ $item->image_url }}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>{{ $item->title }}</h4>
+                                <p>{{ $item->year.' - '.$item->category->title }}</p>
                             </div>
                         </div>
+                    </a>
+                    <div class="portfolio-info mt-2" style="text-align: center;">
+                        <h5>{{ $item->title }}</h5>
+                        <p>{{ $item->year.' - '.$item->category->title }}</p>
+                        <h4>{{ $item->qurency.' '.$item->price }}</h4>
                     </div>
                 </div>
             @endforeach

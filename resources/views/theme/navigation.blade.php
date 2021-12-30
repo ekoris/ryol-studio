@@ -8,36 +8,22 @@
 		<a href="/" class="logo me-auto me-lg-0"><img src="{{ $website->logo_url }}" alt="" class="img-fluid"></a>
 		<nav id="navbar" class="navbar order-last order-lg-0">
 			<ul>
-				<li class="dropdown"><a href="#"><span>Art Work</span> <i class="bi bi-chevron-down"></i></a>
+				<li class="dropdown"><a href="#"><span>Art Work</span></a>
 					<ul>
 						@foreach (resolve(App\Repositories\HomeRepository::class)->artWorkYearNavigation() as $item)
-						<li><a href="{{ route('art-work', $item->year) }}">{{ $item->year }}</a></li>
+							<li><a href="{{ route('art-work', $item->year) }}">{{ $item->year }}</a></li>
 						@endforeach
-						<li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-right"></i></a>
-							<ul>
-								@foreach (resolve(App\Repositories\HomeRepository::class)->artWorkCategoryNavigation() as $item)
-								<li><a href="{{ route('art-work', $item->category->slug) }}">{{ $item->category->title ?? '' }}</a></li>
-								@endforeach
-							</ul>
-						</li>
 					</ul>
 				</li>
-				<li class="dropdown"><a href="#"><span>Up-Comming Event</span> <i class="bi bi-chevron-down"></i></a>
+				<li class="dropdown"><a href="#"><span>Up-Comming Event</span></a>
 					<ul>
 						@foreach (resolve(App\Repositories\HomeRepository::class)->upCommingYearNavigation() as $item)
-						<li><a href="{{ route('up-comming', $item->year) }}">{{ $item->year }}</a></li>
+							<li><a href="{{ route('up-comming', $item->year) }}">{{ $item->year }}</a></li>
 						@endforeach
-						<li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-right"></i></a>
-							<ul>
-								@foreach (resolve(App\Repositories\HomeRepository::class)->upCommingCategoryNavigation() as $item)
-								<li><a href="{{ route('up-comming', $item->category->slug) }}">{{ $item->category->title ?? '' }}</a></li>
-								@endforeach
-							</ul>
-						</li>
 					</ul>
 				</li>
 					<li><a class="nav-link scrollto" href="{{ route('store') }}">Store</a></li>
-				<li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
+				<li class="dropdown"><a href="#"><span>About</span></a>
 					<ul>
 						<li><a href="{{ route('about.cv') }}">Statement CV</a></li>
 						<li><a href="{{ route('about.contact-us') }}">Contact Us</a></li>
