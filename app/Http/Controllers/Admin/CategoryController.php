@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
+use App\Repositories\Entities\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -58,6 +59,18 @@ class CategoryController extends Controller
             ];
             $this->category->update($id, $data);
             notice('success', 'Berhasil Disimpan');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return redirect()->route('admin.category.index');
+    }
+
+    public function delete($id)
+    {
+        try {
+            Category::where('id', $id)->delete();
+            notice('success', 'Berhasil di Hapus');
         } catch (\Throwable $th) {
             throw $th;
         }

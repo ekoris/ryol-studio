@@ -77,7 +77,7 @@ use App\Constants\CategoryType;
                                         <td>
                                             <div>
                                                 <a href="{{ route('admin.category.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                                {{-- <a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-sm btn-danger">Delete</a> --}}
+                                                <a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-sm btn-danger">Delete</a>
                                             </div>
                                         </td>
                                     </tr>
