@@ -25,12 +25,8 @@
 					<li><a class="nav-link scrollto" href="{{ route('store') }}">Store</a></li>
 				<li class="dropdown"><a href="#"><span>About</span></a>
 					<ul>
-						<li><a href="{{ route('about.cv') }}">Statement CV</a></li>
-						@php
-							$firstYear = resolve(App\Repositories\Entities\Cv::class)->orderBy('year', 'asc')->first();
-							$endYear = resolve(App\Repositories\Entities\Cv::class)->orderBy('year', 'desc')->first();
-						@endphp
-						<li><a href="{{ route('about.cv.periodic') }}">Curriculum Vitae ({{ $firstYear->year.' - '.$endYear->year }})</a></li>
+						<li><a href="{{ route('about.cv') }}">Statement</a></li>
+						<li><a href="{{ route('about.cv.periodic') }}">Curriculum Vitae</a></li>
 						<li><a href="{{ route('about.contact-us') }}">Contact Us</a></li>
 					</ul>
 				</li>
