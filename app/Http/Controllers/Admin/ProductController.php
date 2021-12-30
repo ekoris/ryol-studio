@@ -176,8 +176,6 @@ class ProductController extends Controller
                 $data['image'] = $file->getClientOriginalName();
             }
 
-            dd('a');
-
             $this->product->update($id, $data);
             notice('success', 'Berhasil Disimpan');
         } catch (\Throwable $th) {
