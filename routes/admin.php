@@ -56,6 +56,15 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::get('{id}/delete', 'VariationController@delete')->name("delete");
         });
 
+        Route::group(['as' => 'cv.', 'prefix' => 'cv'], function() {
+            Route::get('', 'CvController@index')->name("index");
+            Route::get('create', 'CvController@create')->name("create");
+            Route::post('store', 'CvController@store')->name("store");
+            Route::get('{id}/edit', 'CvController@edit')->name("edit");
+            Route::post('{id}/update', 'CvController@update')->name("update");
+            Route::get('{id}/delete', 'CvController@delete')->name("delete");
+        });
+
         Route::group(['as' => 'up-comming.', 'prefix' => 'up-comming'], function() {
             Route::get('', 'UpCommingController@index')->name("index");
             Route::get('create', 'UpCommingController@create')->name("create");

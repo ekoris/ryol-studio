@@ -6,6 +6,7 @@ use App\Constants\CategoryType;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Repositories\ArtWorkRepository;
+use App\Repositories\Entities\Cv;
 use App\Repositories\Entities\Order;
 use App\Repositories\Entities\User;
 use App\Repositories\Entities\WebsiteManagement;
@@ -97,6 +98,20 @@ class HomeController extends Controller
 
         return view('cv', compact('website'));
     }
+
+    public function cvPeriodic(Request $request)
+    {
+        $cv = Cv::orderBy('year', 'desc')->first();
+
+        if ($request->has('year')) {
+            $cv->where('year', $request->year);
+        }
+
+        $cv = $cv->first();
+
+        return view('cv-periodic', compact('cv'));
+    }
+       
 
     public function contactUs()
     {

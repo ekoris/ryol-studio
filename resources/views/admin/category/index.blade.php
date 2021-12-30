@@ -95,4 +95,4 @@ use App\Constants\CategoryType;
         </div>
     </section>
 </div>
-    @endsection
+@endsection
