@@ -77,15 +77,18 @@ class ProductController extends Controller
             if($request->has('images')) { 
                 foreach ($request->images as $key => $value) {
                     $folderPath = storage_path('app/public/uploads/image/');
-                    $img = $value;
-                    
-                    $image_parts = explode(";base64,", $img);
+                    $image_parts = explode(";base64,", $value);
                     $image_type_aux = explode("image/", $image_parts[0]);
                     $image_type = $image_type_aux[1];
                     $image_base64 = base64_decode($image_parts[1]);
                     $fileName = uniqid().'.'.$image_type;
                     $file = $folderPath . $fileName;
-                    file_put_contents($file, $image_base64);
+                    $path = $folderPath . $fileName;
+                    $input = File::put($path, $image_base64);
+                    $image = Image::make($path);
+                    $image->resize(1000, 1000, function ($const) {
+                        $const->aspectRatio();
+                    })->save($path);
                     $images[] = $fileName;
                 }
 
@@ -135,18 +138,21 @@ class ProductController extends Controller
             if($request->has('images')) { 
                 foreach ($request->images as $key => $value) {
                     $folderPath = storage_path('app/public/uploads/image/');
-                    $img = $value;
-                    
-                    $image_parts = explode(";base64,", $img);
+                    $image_parts = explode(";base64,", $value);
                     $image_type_aux = explode("image/", $image_parts[0]);
                     $image_type = $image_type_aux[1];
                     $image_base64 = base64_decode($image_parts[1]);
                     $fileName = uniqid().'.'.$image_type;
                     $file = $folderPath . $fileName;
-                    file_put_contents($file, $image_base64);
+                    $path = $folderPath . $fileName;
+                    $input = File::put($path, $image_base64);
+                    $image = Image::make($path);
+                    $image->resize(1000, 1000, function ($const) {
+                        $const->aspectRatio();
+                    })->save($path);
                     $images[] = $fileName;
                 }
-
+                
                 $data['images'] = $images;
             }
 
@@ -169,6 +175,8 @@ class ProductController extends Controller
 
                 $data['image'] = $file->getClientOriginalName();
             }
+
+            dd('a');
 
             $this->product->update($id, $data);
             notice('success', 'Berhasil Disimpan');
