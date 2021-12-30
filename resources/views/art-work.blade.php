@@ -40,17 +40,15 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($products as $item)
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-wrap">
-                        <img src="{{ $item->image_url }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>{{ $item->title }}</h4>
-                            <p>{{ $item->year.' - '.$item->category->title }}</p>
-                            <div class="portfolio-links">
-                                <a href="{{ $item->image_url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="{{ route('detail-product', $item->slug) }}" title="More Details"><i class="bx bx-link"></i></a>
+                    <a href="{{ route('detail-product', $item->slug) }}" >
+                        <div class="portfolio-wrap">
+                            <img src="{{ $item->image_url }}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>{{ $item->title }}</h4>
+                                <p>{{ $item->year.' - '.$item->category->title }}</p>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
