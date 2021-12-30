@@ -17,8 +17,8 @@
 				</li>
 				<li class="dropdown"><a href="#"><span>Up-Comming Event</span></a>
 					<ul>
-						@foreach (resolve(App\Repositories\HomeRepository::class)->upCommingYearNavigation() as $item)
-							<li><a href="{{ route('up-comming', $item->year) }}">{{ $item->year }}</a></li>
+						@foreach (resolve(App\Repositories\Entities\Category::class)->where('type', 2)->get() as $item)
+							<li><a href="{{ route('up-comming', $item->slug) }}">{{ $item->title }}</a></li>
 						@endforeach
 					</ul>
 				</li>

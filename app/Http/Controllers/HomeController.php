@@ -84,6 +84,10 @@ class HomeController extends Controller
 
         $qrcode = QrCode::size(200)->generate(route('detail-product', $product->slug));
 
+        if ($product->product_type == CategoryType::UP_COMMING_EVENT) {
+            return view('detail-up-comming', compact('params','slug', 'product','qrcode'));
+        }
+
         return view('detail-product', compact('params','slug', 'product','qrcode'));
     }
 
