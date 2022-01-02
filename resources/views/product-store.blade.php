@@ -68,20 +68,30 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <form action="{{ route('order.checkout') }}" method="post">
                             @csrf
                             <div style="padding-bottom: 10px">
-                                <h5>Qty : <input type="number" name="qty" style="width: 50px;font-size: 14px" value="1" min="1" max="10" width="20px"></h5>
+                                <h5><b>Qty</b> : <input type="number" name="qty" style="width: 50px;font-size: 14px" value="1" min="1" max="10" width="20px"></h5>
                             </div>
                             <div style="padding-bottom: 10px">
-                                <h5>Size : @foreach (($product->productVariations ?? []) as $item)
+                                <h5> <b>Size</b>  </h5>
+                                @foreach (($product->productVariations ?? []) as $item)
                                     <input type="radio" name="variant" required value="{{ $item->id }}"> {{ $item->variation->name }}
-                                @endforeach</h5>
-                                <h5>Edition : </h5>
+                                @endforeach
+                                <div style="margin-bottom: 30px"></div>
+                                <h5><b>Edition</b> </h5>
                                 @foreach (($product->productEditions ?? []) as $item)
-                                    <input type="radio" name="edition" {{ $item->is_sold == 1 ? 'disabled' : 'required' }} value="{{ $item->id }}"> {{ $item->edition }} <br>
+                                    <input type="radio" name="edition" {{ $item->is_sold == 1 ? 'disabled' : 'required' }} value="{{ $item->id }}"> <i>{{ $item->edition }}</i> <br>
                                 @endforeach
                             </div>
                             @if (logged_in_user())
                                 <input type="hidden" name="slug" value="{{ $product->slug }}">
-                                <button type="submit" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%">Order</button>
+                                @php
+                                    $cekProduct = $product->productEditions->count();
+                                    $cekProductSold = $product->productEditions->where('is_sold', 1)->count();
+                                @endphp
+                                @if ($cekProduct == $cekProductSold)
+                                    <button type="submit" id="buy" disabled class="btn btn-custom btn-snm btn-block" style="width: 100%">SOLD OUT</button>
+                                @else
+                                    <button type="submit" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%">Order</button>
+                                @endif
                             @else
                                 <a href="{{ route('auth.login') }}">
                                     <button type="button" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%">Login To order</button>
