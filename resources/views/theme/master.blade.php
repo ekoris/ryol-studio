@@ -21,22 +21,33 @@
     <link href="{{ asset('assets/frontend') }}/assets/css/style.css" rel="stylesheet">
     @stack('styles')
 </head>
+@php
+    $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
+@endphp
 <body>
     @include('theme.navigation')
     <main id="main">
         @yield('body')
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
-    {{-- <footer id="footer"">
+    <footer id="footer" style="background-color: #282828 !important">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Ryol Studio</span></strong>. All Rights Reserved
+                <a href="{{ $website->link_ig ?? '#' }}" target="_blank">
+                    <img src="{{ asset('assets/frontend/assets/img/sosmed/ig.png') }}" width="30px" alt="">
+                </a>
+                <a href="{{ $website->link_twitter ?? '#' }}" target="_blank">
+                    <img src="{{ asset('assets/frontend/assets/img/sosmed/twitter.png') }}" width="30px" alt="">
+                </a>
+                <a href="{{ $website->link_wa ?? '#' }}" target="_blank">
+                    <img src="{{ asset('assets/frontend/assets/img/sosmed/wa.png') }}" width="30px" alt="">
+                </a>
             </div>
         </div>
-    </footer><!-- End Footer --> --}}
+    </footer>
     
     <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    {{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> --}}
     
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/frontend') }}/assets/vendor/purecounter/purecounter.js"></script>

@@ -48,6 +48,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'qurency' => $request->qurency,
                 'is_sold' => $request->is_sold ?? 0,
+                'product_editions' => $request->product_edition
             ];
 
             if ($request->type_product == 1) {
@@ -125,6 +126,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'qurency' => $request->qurency,
                 'is_sold' => $request->is_sold ?? 0,
+                'product_editions' => $request->product_edition
             ];
 
             if ($request->type_product == 1) {

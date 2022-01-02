@@ -7,6 +7,7 @@ use App\Repositories\Entities\Product;
 use App\Repositories\Entities\ProductPhoto;
 use App\Repositories\Entities\ProductUserPrivilege;
 use App\Repositories\Entities\ProductVariation;
+use App\Repositories\Entities\ProductEdition;
 
 class ProductRepository {
 
@@ -104,6 +105,7 @@ class ProductRepository {
             $productData['users'],
             $productData['images'],
             $productData['variations'],
+            $productData['product_editions'],
         );
 
         $product =  Product::create($productData);
@@ -128,6 +130,14 @@ class ProductRepository {
                 'variation_id' => $value
             ]);
         }
+
+        foreach (($data['product_editions'] ?? []) as $key => $value) {
+            ProductEdition::create([
+                'product_id' => $product->id,
+                'edition' => $value,
+                'is_sold' => 0
+            ]);
+        }
     }
 
     public function update($id, $data)
@@ -140,6 +150,7 @@ class ProductRepository {
             $productData['users'],
             $productData['images'],
             $productData['variations'],
+            $productData['productEditions'],
         );
 
         $product->update($productData);
@@ -165,6 +176,14 @@ class ProductRepository {
             ProductVariation::create([
                 'product_id' => $product->id,
                 'variation_id' => $value
+            ]);
+        }
+
+        ProductEdition::where('product_id', $product->id)->delete();
+        foreach (($data['product_editions'] ?? []) as $key => $value) {
+            ProductEdition::create([
+                'product_id' => $product->id,
+                'edition' => $value,
             ]);
         }
     }

@@ -210,9 +210,28 @@ use App\Constants\CategoryType;
                                     <input type="checkbox" name="is_sold" value="Rp" id="">
                                 </div>
                             </div>
+							<div class="form-box upload-edition">
+								<label for="">Product Edition</label>
+								<div class="repeat-container">
+									<div class="d-flex pb-8 repeat-row">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<input type="text" class="form-control" name="product_edition[]" placeholder="Add Edition">
+												</div>
+											</div>
+											<div class="col-md-2">
+												<a href="" class="repeat-add ml-8 my-auto">
+													<button class="btn btn-warning btn-sm">Add Edition</button>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="box-footer" style="text-align: right">
+							<button type="submit" class="btn btn-primary btn-block">Save</button>
 						</div>
 					</form>
 				</div>
@@ -230,6 +249,35 @@ use App\Constants\CategoryType;
 <script>
 	jQuery(document).ready(function () {
 		ImgUpload();
+	});
+
+	$(document).on('click', '.upload-edition .repeat-add', function(e){
+		e.preventDefault();
+		let template = `
+		<div class="d-flex pb-8 repeat-row">
+			<div class="form-file__input w-100">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<input type="text" class="form-control" name="product_edition[]" placeholder="Add Edition">
+						</div>
+					</div>
+					<div class="col-md-2">
+						<a href="" class="repeat-add ml-8 my-auto">
+							<button class="btn btn-warning btn-sm">Add Edition</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>`;
+		
+		$(this).closest('.repeat-container').append(template);
+		$(this).html('<button class="btn btn-danger btn-sm">remove</button><br>').attr('class', 'repeat-remove ml-8 my-auto')
+	});
+
+	$(document).on('click', '.repeat-remove', function(e){
+		e.preventDefault()
+		$(this).closest('.repeat-row').remove()
 	});
 	
 	function ImgUpload() {

@@ -16,13 +16,13 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "appleGramond", sans-serif;
-  color: #6a5f40;
+  font-family: Arial, sans-serif;
+  color: #030402;
   background-color: #dbd5c4;
 }
 
 a {
-  color: #6a5f40;
+  color: #030402;
   text-decoration: none;
 }
 
@@ -32,7 +32,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "appleGramond", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -184,7 +184,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 .navbar {
   padding: 0;
-  font-family: "appleGramond", sans-serif !important;
+  font-family: Arial, sans-serif !important;
 }
 .navbar ul {
   margin: 0;
@@ -202,8 +202,8 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-size: 17px;
-  font-weight: 500;
-  color: #6a5f40;
+  font-weight: 550;
+  color: #030402;
   white-space: nowrap;
   transition: 0.3s;
   text-transform: uppercase;
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #6a5f40;
+  color: #030402;
 }
 .navbar .dropdown ul {
   display: block;
@@ -237,14 +237,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 20px;
   font-size: 14px;
   text-transform: none;
-  color: #6a5f40;
-  font-weight: 400;
+  color: #030402;
+  font-weight: 550;
 }
 .navbar .dropdown ul a i {
   font-size: 12px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  background-color: #6a5f40;
+  background-color: #030402;
   color: white !important;
 }
 .navbar .dropdown:hover > ul {
@@ -276,7 +276,7 @@ h1, h2, h3, h4, h5, h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #6a5f40;
+  color: #030402;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -391,7 +391,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 64px;
   color: #fff;
-  font-family: "appleGramond", sans-serif;
+  font-family: Arial, sans-serif;
 }
 #hero h1 span {
   color: #ffc451;
@@ -470,7 +470,7 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #aaaaaa;
-  font-family: "appleGramond", sans-serif;
+  font-family: Arial, sans-serif;
 }
 .section-title h2::after {
   content: "";
@@ -486,8 +486,8 @@ section {
   font-size: 36px;
   font-weight: 600;
   text-transform: inherit;
-  font-family: "appleGramond", sans-serif;
-  color: #6a5f40;
+  font-family: Arial, sans-serif;
+  color: #030402;
 }
 
 /*--------------------------------------------------------------
@@ -496,7 +496,7 @@ section {
 .about .content h3 {
   font-weight: 700;
   font-size: 28px;
-  font-family: "appleGramond", sans-serif;
+  font-family: Arial, sans-serif;
 }
 .about .content ul {
   list-style: none;
@@ -868,7 +868,7 @@ section {
   margin-top: 20px;
   color: #3b3b3b;
   font-size: 15px;
-  font-family: "appleGramond", sans-serif;
+  font-family: Arial, sans-serif;
   transition: ease-in-out 0.3s;
 }
 .counts .content .count-box a:hover {
@@ -1068,7 +1068,7 @@ section {
 }
 .contact .info i {
   font-size: 20px;
-  background: #6a5f40;
+  background: #030402;
   color: #151515;
   float: left;
   width: 44px;
@@ -1090,7 +1090,7 @@ section {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px;
-  color: #6a5f40;
+  color: #030402;
 }
 .contact .info .email, .contact .info .phone {
   margin-top: 40px;
@@ -1194,7 +1194,7 @@ section {
 .breadcrumbs h2 {
   font-size: 28px;
   font-weight: 1000;
-  color: #6a5f40;
+  color: #030402;
 }
 .breadcrumbs ol {
   display: flex;

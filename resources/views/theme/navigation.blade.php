@@ -11,7 +11,7 @@
 				<li class="dropdown"><a href="#"><span>Art Work</span></a>
 					<ul>
 						@foreach (resolve(App\Repositories\HomeRepository::class)->artWorkYearNavigation() as $item)
-							<li><a href="{{ route('art-work', $item->year) }}">{{ $item->year }}</a></li>
+							<li><a href="{{ route('art-work', [$item->year, 'category' => 'painting']) }}">{{ $item->year }}</a></li>
 						@endforeach
 					</ul>
 				</li>

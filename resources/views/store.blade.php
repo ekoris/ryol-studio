@@ -7,7 +7,7 @@
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Project</h2>
+            {{-- <h2>Project</h2> --}}
         </div>
     </div>
 </section>
@@ -15,8 +15,8 @@
 <section id="portfolio" class="portfolio inner-page" >
     <div class="container" data-aos="fade-up">
         <div class="section-title">
-            <h2>Store</h2>
-            <p>Check our Store</p>
+            {{-- <h2>Store</h2> --}}
+            {{-- <p>Check our Store</p> --}}
         </div>  
         
         <div class="row" data-aos="fade-up" data-aos-delay="100">

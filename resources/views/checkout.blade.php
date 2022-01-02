@@ -19,6 +19,10 @@
     
     tr:nth-child(even) {
     }
+
+    footer{
+        display: none !important;
+    }
 </style>
 @endpush
 
@@ -66,7 +70,7 @@
                             </div>
                             <div class="form-group mt-2">
                                 <label for="inputAddress2">Address 2 (Optional)</label>
-                                <input type="text" class="form-control" id="inputAddress2" required placeholder="Apartment, studio, or floor">
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                             </div>
                             <div class="form-group mt-2">
                                 <label>Contact</label>
@@ -84,6 +88,7 @@
                             <th>QTY</th>
                             <th>Variant</th>
                             <th>Price</th>
+                            <th>Edition</th>
                         </tr>
                         <tr>
                             <td>
@@ -95,6 +100,10 @@
                             @endphp
                             <td>{{ $variant->variation->name ?? '-' }}</td>
                             <td>{{ $product->qurency.''.$product->price }}</td>
+                            @php
+                                $edition = resolve(App\Repositories\Entities\ProductEdition::class)->find($data['edition']);
+                            @endphp
+                            <td>{{ $edition->edition }}</td>
                         </tr>
                     </table>
                 </div>

@@ -65,12 +65,15 @@ class OrderController extends Controller
         $orderDetail = json_decode($request->order_detail);
         $product =  $this->product->findBySlug($orderDetail->slug);
         $variant = resolve(\App\Repositories\Entities\ProductVariation::class)->find($orderDetail->variant);
+        $edition = resolve(\App\Repositories\Entities\ProductEdition::class)->find($orderDetail->edition);
 
         $order = [
             'user_id' => logged_in_user()->id,
             'product_id' => $product->id,
             'variation' => $variant->variation->name,
             'qty' => $orderDetail->qty,
+            'edition' => $edition->edition,
+            'product_edition_id' => $edition->id,
             'total_price' => $orderDetail->qty * $product->price,
             'status' => 1,
         ];
@@ -79,7 +82,7 @@ class OrderController extends Controller
 
         $shipping = [
             'order_id' => $orders->id,
-            'name' => $request->first_name.' '.$request->last_name,
+            'name' => $request->firstname.' '.$request->lastname,
             'country' => $request->country,
             'address' => $request->address,
             'optional_address' => $request->optional_address,

@@ -1,8 +1,6 @@
 @extends('theme.master')
 
-@php
-    $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
-@endphp
+
 
 @push('styles')
 @endpush
@@ -73,19 +71,4 @@
         </div>
     </section><!-- End Contact Section -->
 </section>
-<footer id="footer" style="background-color: #282828 !important">
-    <div class="container">
-        <div class="copyright">
-            <a href="{{ $website->link_ig ?? '#' }}" target="_blank">
-                <img src="{{ asset('assets/frontend/assets/img/sosmed/ig.png') }}" width="30px" alt="">
-            </a>
-            <a href="{{ $website->link_twitter ?? '#' }}" target="_blank">
-                <img src="{{ asset('assets/frontend/assets/img/sosmed/twitter.png') }}" width="30px" alt="">
-            </a>
-            <a href="{{ $website->link_wa ?? '#' }}" target="_blank">
-                <img src="{{ asset('assets/frontend/assets/img/sosmed/wa.png') }}" width="30px" alt="">
-            </a>
-        </div>
-    </div>
-</footer>
 @endsection

@@ -49,6 +49,8 @@ use App\Constants\CategoryType;
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
+                                    <th></th>
+                                    <th>Status</th>
                                     <th>Create</th>
                                     <th>Product</th>
                                     <th>Variation</th>
@@ -60,14 +62,44 @@ use App\Constants\CategoryType;
                                 </tr>
                                 @forelse ($orders as $item)
                                     <tr>
+                                        <td>
+                                            @switch($item->status)
+                                                @case(1)
+                                                    <a href="{{ route('admin.order.action', [$item->id, 'status' => 2]) }}" onclick = "if (! confirm('Are You Sure Approve this orders ??')) { return false; }">
+                                                        <button class="btn btn-danger btn-sm">Approve</button>
+                                                    </a>
+                                                    <a href="{{ route('admin.order.action', [$item->id, 'status' => 0]) }}"  onclick = "if (! confirm('Are You Sure Rejected this orders ??')) { return false; }">
+                                                        <button class="btn btn-warning btn-sm">Rejected</button>
+                                                    </a>
+                                                    @break
+                                                @default
+                                                    -
+                                            @endswitch
+                                            
+                                        </td>
+                                        <td>
+                                            @switch($item->status)
+                                                @case(1)
+                                                    <span class="badge bg-blue">Waiting Action</span>
+                                                    @break
+                                                @case(2)
+                                                    <span class="badge bg-green">Approved</span>
+                                                    @break
+                                                @default
+                                                    <span class="badge bg-red">Rejected</span>
+                                            @endswitch
+                                        </td>
                                         <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
-                                        <td>{{ $item->product->title }}</td>
+                                        <td>{{ optional($item->product)->title }}</td>
                                         <td>{{ $item->variation }}</td>
                                         <td>{{ $item->qty }}</td>
                                         <td>{{ $item->product->qurency.''.$item->total_price }}</td>
                                         <td><address>{{ $item->shippingOrder->name.', '.$item->shippingOrder->country.' '.$item->shippingOrder->address.' ('.$item->shippingOrder->optional_address.')'.' '.$item->shippingOrder->contact }}</address></td>
                                         <td><a href="{{ route('detail-product', $item->product->slug) }}" target="_blank">{{ route('detail-product', $item->product->slug) }}</a></td>
-                                        <td>{{ $item->user->name }}</td>
+                                        <td>
+                                            {{ $item->user->name }} <br>
+                                            {{ $item->user->email }} <br>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

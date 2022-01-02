@@ -71,9 +71,12 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                                 <h5>Qty : <input type="number" name="qty" style="width: 50px;font-size: 14px" value="1" min="1" max="10" width="20px"></h5>
                             </div>
                             <div style="padding-bottom: 10px">
-                                <h5>Variation : </h5>
-                                @foreach (($product->productVariations ?? []) as $item)
+                                <h5>Size : @foreach (($product->productVariations ?? []) as $item)
                                     <input type="radio" name="variant" required value="{{ $item->id }}"> {{ $item->variation->name }}
+                                @endforeach</h5>
+                                <h5>Edition : </h5>
+                                @foreach (($product->productEditions ?? []) as $item)
+                                    <input type="radio" name="edition" {{ $item->is_sold == 1 ? 'disabled' : 'required' }} value="{{ $item->id }}"> {{ $item->edition }} <br>
                                 @endforeach
                             </div>
                             @if (logged_in_user())
@@ -86,14 +89,6 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                             @endif
                         </form>
                         @endif
-                        <div class="socmed" style="padding-top: 30px; text-align: right">
-                            <a href="#" class="fa fa-facebook"></a>
-                            <a href="#" class="fa fa-twitter"></a>
-                            <a href="#" class="fa fa-google"></a>
-                            <a href="#" class="fa fa-linkedin"></a>
-                            <a href="#" class="fa fa-youtube"></a>
-                            <a href="#" class="fa fa-instagram"></a>
-                        </div>
                     </div>
                 </div>
             </div>
