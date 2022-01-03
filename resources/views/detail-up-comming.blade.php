@@ -12,11 +12,9 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Up-Comming Detail</h2>
+            <h2></h2>
         </div>
     </div>
-    
-    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
