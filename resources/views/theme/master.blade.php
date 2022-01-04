@@ -26,7 +26,7 @@
 @endphp
 <body>
     @include('theme.navigation')
-    <main id="main" style="min-height: calc(100vh - 150px);">
+    <main id="main" style="min-height: calc(100vh - 88px);">
         @yield('body')
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
