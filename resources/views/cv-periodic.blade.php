@@ -16,7 +16,7 @@
 <section class="breadcrumbs" style="background-color: #f8f7f3 !important;">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Curiciulum Vitae - {{ $cv->year }}</h2>
+            <h2></h2>
             <ol>
                 @foreach (resolve(\App\Repositories\Entities\Cv::class)->groupBy('year')->get() as $item)
                     <li><a class="{{ $cv->year == $item->year ? 'active' : '' }}" href="{{ route('about.cv.periodic', ['year' => $item->year]) }}">{{ $item->year ?? '' }}</a></li>

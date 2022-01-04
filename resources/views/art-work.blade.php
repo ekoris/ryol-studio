@@ -2,7 +2,6 @@
 
 @push('styles')
 <style>
-
     ol li a:hover, .active, .active:focus, .navbar li:hover > a {
        color:#aaaaaa !important;
     }

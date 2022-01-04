@@ -31,7 +31,7 @@
 					</ul>
 				</li>
 				@if (logged_in_user() && logged_in_user()->hasRole('user'))
-					<li><a class="nav-link scrollto" href="{{ route('auth.profile') }}">Profile</a></li>
+					{{-- <li><a class="nav-link scrollto" href="{{ route('auth.profile') }}">Profile</a></li> --}}
 					<li><a class="nav-link scrollto" href="{{ route('auth.logout') }}">Sign Out</a></li>
 				@else
 					<li><a class="nav-link scrollto" href="{{ route('auth.login') }}">Login</a></li>

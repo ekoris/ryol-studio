@@ -7,7 +7,7 @@
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Login or Register</h2>
+            {{-- <h2>Login or Register</h2> --}}
         </div>
     </div>
     
@@ -17,9 +17,6 @@
             <h3>
                 Create Account or Login
             </h3>
-            <p>
-                Share your thouhts with the world form today.
-            </p>
             <div class="row mt-5">
                 <div class="col-lg-6">
                     <form action="{{ route('auth.do-login') }}" method="post" class="php-email-form">
