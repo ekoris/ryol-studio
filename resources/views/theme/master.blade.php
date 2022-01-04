@@ -26,11 +26,11 @@
 @endphp
 <body>
     @include('theme.navigation')
-    <main id="main">
+    <main id="main" style="min-height: calc(100vh - 162px);">
         @yield('body')
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
-    <footer id="footer" style="background-color: #282828 !important">
+    <footer id="footer" style="background-color: #282828 !important;">
         <div class="container">
             <div class="copyright">
                 <a href="{{ $website->link_ig ?? '#' }}" target="_blank">
