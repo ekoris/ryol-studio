@@ -10,13 +10,6 @@
 
 @section('body')
 <section class="breadcrumbs" style="background-color: #f8f7f3 !important;">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            {{-- <h2>Statement CV</h2> --}}
-        </div>
-    </div>
-    
-    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="background-color: #f8f7f3 !important;">
         <div class="container">
             <div class="row gy-4">

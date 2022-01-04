@@ -24,7 +24,6 @@
             </ol>
         </div>
     </div>
-    
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="background-color: #f8f7f3 !important;">
         <div class="container">

@@ -4,27 +4,14 @@
 @endpush
 
 @section('body')
-<section class="breadcrumbs">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2></h2>
-        </div>
-    </div>
-</section>
-
 <section id="portfolio" class="portfolio inner-page" >
     <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <p></p>
-        </div>  
-        
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-12 d-flex justify-content-center">
                 <ul id="portfolio-flters">
                 </ul>
             </div>
         </div>
-        
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($products as $item)
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
