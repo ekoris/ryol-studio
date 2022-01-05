@@ -34,8 +34,8 @@ Route::post('do-register', 'HomeController@doRegister')->name("auth.do-register"
 Route::get('logout', 'HomeController@logout')->name("auth.logout");
 
 Route::post('orders', 'HomeController@orders')->name("orders");
-Route::get('autenticate-product', 'HomeController@authenticationProduct')->name("authentication.product");
-Route::post('autenticate-product-check', 'HomeController@authenticationProductCheck')->name("authentication.product.check");
+Route::get('authenticate-product', 'HomeController@authenticationProduct')->name("authentication.product");
+Route::post('authenticate-product-check', 'HomeController@authenticationProductCheck')->name("authentication.product.check");
 
 
 Route::group(['as' => 'order.', 'prefix' => 'order'], function() {
