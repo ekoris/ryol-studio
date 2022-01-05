@@ -226,6 +226,10 @@ class HomeController extends Controller
             $slug = $request->slug;
             $order = Order::where('user_id', logged_in_user()->id)->where('product_id', $product->id)->first();
 
+            if (!$order) {
+                return redirect()->route('authentication.product', $request->slug)->with(['error_product' => true]);
+            }
+
             if ($product->is_privilege == 1) {
                 if (logged_in_user()) {
                     $authorize = Order::where('user_id', logged_in_user()->id)->where('product_id', $product->id)->first();
