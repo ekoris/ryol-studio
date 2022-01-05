@@ -6,7 +6,7 @@
 @section('body')
 <section id="portfolio" class="portfolio inner-page" >
     <div class="container" data-aos="fade-up">
-        <div class="section-title">
+        <div class="section-title" style="margin-top: 50px">
             <h2>Up-Comming Event</h2>
         </div>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
