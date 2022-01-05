@@ -51,7 +51,7 @@
                   <h2>Authenticity Data</h2> 
                   <ul style="text-align: left !important">
                     @forelse ($orders as $item)
-                        <li>{{ date('F Y', strtotime($item->product->date_production ?? '')) .' / ' }} <a href="">{{ optional($item->product)->title ?? '-'.' / ' }}</a>{{ $order->edition ?? '' }}</li>
+                        <li>{{ date('F Y', strtotime($item->product->date_production ?? '')) .' / ' }} <a href="{{ route('detail-product-store', optional($item->product)->slug) }}" target="_blank">{{ optional($item->product)->title ?? '-'.' / ' }}</a>{{ $order->edition ?? '' }}</li>
                     @empty
                         <li> You haven't bought this product yet !!</li>
                     @endforelse

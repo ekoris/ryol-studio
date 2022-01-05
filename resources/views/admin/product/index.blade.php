@@ -67,8 +67,8 @@ use App\Constants\CategoryType;
                                             <a href="{{ route('admin.product.delete', $item->id) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">delete</a>
                                             <br>
                                             <br>
-                                            <a href="{{ route('admin.qrcode', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code</a>
-                                            <a href="{{ route('admin.qrcode-appreciation', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code Appreciation</a>
+                                            {{-- <a href="{{ route('admin.qrcode', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code</a> --}}
+                                            {{-- <a href="{{ route('admin.qrcode-appreciation', $item->slug) }}" target="_blank" class="btn btn-sm btn-block btn-primary">Download QR Code Appreciation</a> --}}
                                         </div>
                                     </div>
                                 </div>
