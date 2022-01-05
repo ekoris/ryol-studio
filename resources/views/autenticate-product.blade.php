@@ -31,7 +31,6 @@
                                         Authenticity Access
                                     </h3>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                                    <input type="hidden" name="slug" value="{{ $slug }}">
                                     @if (Session::get('error'))
                                         <div class="alert alert-danger" role="alert" style="padding-top: 20px;">
                                             Email Not Registered !!

@@ -88,13 +88,13 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                                     $cekProductSold = $product->productEditions->where('is_sold', 1)->count();
                                 @endphp
                                 @if ($cekProduct == $cekProductSold)
-                                    <button type="submit" id="buy" disabled class="btn btn-custom btn-snm btn-block" style="width: 100%">SOLD OUT</button>
+                                    <button type="submit" id="buy" disabled class="btn btn-custom btn-snm btn-block" style="width: 100%;background-color: black;color: white">SOLD OUT</button>
                                 @else
-                                    <button type="submit" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%">Order</button>
+                                    <button type="submit" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%;background-color: black;color: white">Order</button>
                                 @endif
                             @else
                                 <a href="{{ route('auth.login') }}">
-                                    <button type="button" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%">Login To order</button>
+                                    <button type="button" id="buy" class="btn btn-custom btn-snm btn-block" style="width: 100%;background-color: black;color: white">Login To Order</button>
                                 </a>
                             @endif
                         </form>

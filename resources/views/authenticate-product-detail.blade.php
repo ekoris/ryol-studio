@@ -25,6 +25,10 @@
         line-height: 200px;
         margin-left:-15px;
       }
+
+      a:hover {
+        color: red;
+      }
       .card {
         background: white;
         padding: 60px;
@@ -44,15 +48,23 @@
                 <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
                   <i class="checkmark">✓</i>
                 </div>
-                  <h1>Authenticity Data</h1> 
-                  <p>1. {{ date('F Y', strtotime($product->date_production)) }} / {{ $product->title }} / {{ $order->edition ?? '' }}</p>
+                  <h2>Authenticity Data</h2> 
+                  <ul style="text-align: left !important">
+                    @forelse ($orders as $item)
+                        <li>{{ date('F Y', strtotime($item->product->date_production ?? '')) .' / ' }} <a href="">{{ optional($item->product)->title ?? '-'.' / ' }}</a>{{ $order->edition ?? '' }}</li>
+                    @empty
+                        <li> You haven't bought this product yet !!</li>
+                    @endforelse
+                  </ul>
                   <br>
-                  <a href="/">
-                    <button class="btn btn-warning btn-sm">Finish</button>
-                  </a>
+                  <div style="text-align: right !important"> 
+                    <a href="/" style="text-align: right !important">
+                      <button class="btn btn-dark btn-sm">Finish</button>
+                    </a>
+                  </div>
             </div>
         </div>
-    </section><!-- End Portfolio Details Section -->
+    </section>
 </section>
 @endsection
 
