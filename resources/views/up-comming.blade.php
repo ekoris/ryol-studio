@@ -6,6 +6,9 @@
 @section('body')
 <section id="portfolio" class="portfolio inner-page" >
     <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Up-Comming Event</h2>
+        </div>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-12 d-flex justify-content-center">
                 <ul id="portfolio-flters">
