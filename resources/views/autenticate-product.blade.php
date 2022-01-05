@@ -32,13 +32,13 @@
                                     </h3>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                     @if (Session::get('error'))
-                                        <div class="alert alert-danger" role="alert" style="padding-top: 20px;">
+                                        <div class="alert alert-danger" role="alert" style="padding-top: 20px;margin-top:20px">
                                             Email Not Registered !!
                                         </div>
                                     @endif
 
                                     @if (Session::get('error_product'))
-                                        <div class="alert alert-danger" role="alert" style="padding-top: 20px;">
+                                        <div class="alert alert-danger" role="alert" style="padding-top: 20px;margin-top:20px">
                                             You haven't bought this product yet !!
                                         </div>
                                     @endif

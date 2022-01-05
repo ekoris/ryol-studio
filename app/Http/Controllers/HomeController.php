@@ -217,12 +217,16 @@ class HomeController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        if (!$user) {
+            return redirect()->route('authentication.product')->with(['error' => true]);
+        }
+
         if (Auth::loginUsingId($user->id)) {
             $orders = Order::where('user_id', logged_in_user()->id)->get();
 
             return view('authenticate-product-detail', compact('orders'));
         } else {
-            return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
+            return redirect()->route('authentication.product')->with(['error' => true]);
         }
     }
 
