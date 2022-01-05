@@ -45,7 +45,11 @@
                   <i class="checkmark">✓</i>
                 </div>
                   <h1>Authenticity Data</h1> 
-                  <p><strong>Year</strong>: {{ date('F Y', strtotime($product->date_production)) }} /  {{ $product->title }}</p>
+                  <p>1. {{ date('F Y', strtotime($product->date_production)) }} / {{ $product->title }} / {{ $order->edition }}</p>
+                  <br>
+                  <a href="/">
+                    <button class="btn btn-warning btn-sm">Finish</button>
+                  </a>
             </div>
         </div>
     </section><!-- End Portfolio Details Section -->

@@ -224,6 +224,7 @@ class HomeController extends Controller
             $params['slug_product'] =  $request->slug;
             $product = $this->product->findBySlug($request->slug);
             $slug = $request->slug;
+            $order = Order::where('user_id', logged_in_user()->id)->where('product_id', $product->id)->first();
 
             if ($product->is_privilege == 1) {
                 if (logged_in_user()) {
@@ -234,7 +235,7 @@ class HomeController extends Controller
                 }
             }
 
-            return view('authenticate-product-detail', compact('product','slug'));
+            return view('authenticate-product-detail', compact('product','slug','order'));
         } else {
             return redirect()->route('authentication.product', $request->slug)->with(['error' => true]);
         }
