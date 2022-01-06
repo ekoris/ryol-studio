@@ -38,6 +38,11 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::post('store', 'UserController@aboutStore')->name("store");
         });
 
+        Route::group(['as' => 'statement.', 'prefix' => 'statement'], function() {
+            Route::get('', 'StatementController@index')->name("index");
+            Route::post('store', 'StatementController@store')->name("store");
+        });
+
         Route::group(['as' => 'category.', 'prefix' => 'category'], function() {
             Route::get('', 'CategoryController@index')->name("index");
             Route::get('create', 'CategoryController@create')->name("create");

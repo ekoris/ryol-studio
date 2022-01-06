@@ -30,7 +30,7 @@
             <div class="row gy-4">
                 <div class="col-lg-12">
                     <div class="portfolio-description">
-                        <p>{!! $cv->description !!}</p>
+                        <p>{!! $cv->description ?? '-' !!}</p>
                     </div>
                 </div>
                 

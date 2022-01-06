@@ -41,14 +41,6 @@ use App\Constants\CategoryType;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">About</label>
-                                <textarea name="about" class="form-control" id="" cols="30" rows="10">{{ $website->about ?? null }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Cv</label>
-                                <textarea name="cv" id="" style="width: 100%">{{ $website->cv ?? null }}</textarea>
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="text" name="email" value="{{ $website->email ?? null }}" required class="form-control" placeholder="Enter Email">
                             </div>
