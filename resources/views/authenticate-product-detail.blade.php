@@ -58,7 +58,7 @@
                   </ul>
                   <br>
                   <div style="text-align: right !important"> 
-                    <a href="/" style="text-align: right !important">
+                    <a href="{{ route('authentication.product') }}" style="text-align: right !important">
                       <button class="btn btn-dark btn-sm">Finish</button>
                     </a>
                   </div>

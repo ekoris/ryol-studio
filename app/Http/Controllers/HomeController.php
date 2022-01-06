@@ -6,6 +6,7 @@ use App\Constants\CategoryType;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Repositories\ArtWorkRepository;
+use App\Repositories\Entities\ContactUs;
 use App\Repositories\Entities\Cv;
 use App\Repositories\Entities\Order;
 use App\Repositories\Entities\User;
@@ -248,6 +249,18 @@ class HomeController extends Controller
         }
 
         return view('product-store', compact('params','slug', 'product'));
+    }
+
+    public function contactUsSend(Request $request)
+    {
+        ContactUs::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->route('about.contact-us')->with(['success' => true]);
     }
 }
 

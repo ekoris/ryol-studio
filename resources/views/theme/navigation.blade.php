@@ -5,7 +5,7 @@
 <header id="header" class="fixed-top header-inner-pages" style="position: absolute;left: 0;right: 0;">
 	<div class="container d-flex align-items-center justify-content-lg-between">
 		{{-- <h1 class="logo me-auto me-lg-0"><a href="">Ryol Studio<span>.</span></a></h1> --}}
-		@if (!Request::routeIs('authentication.product'))
+		@if (!Request::routeIs(['authentication.product','authentication.product.check']))
 			<a href="/" class="logo me-auto me-lg-0"><img src="{{ $website->logo_url }}" alt="" class="img-fluid"></a>
 			<nav id="navbar" class="navbar order-last order-lg-0">
 				<ul>

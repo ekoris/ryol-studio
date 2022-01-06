@@ -26,6 +26,7 @@ Route::get('detail-product-store/{slug}', 'HomeController@detailProductStore')->
 Route::get('about/cv', 'HomeController@cv')->name("about.cv");
 Route::get('about/cv-periodic', 'HomeController@cvPeriodic')->name("about.cv.periodic");
 Route::get('about/contact-us', 'HomeController@contactUs')->name("about.contact-us");
+Route::post('about/contact-us-store', 'HomeController@contactUsSend')->name("about.contact-us.send");
 Route::get('profile', 'HomeController@profile')->name("auth.profile");
 Route::post('update-profile', 'HomeController@updateProfile')->name("auth.profile.update");
 Route::get('login', 'HomeController@login')->name("auth.login");

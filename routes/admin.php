@@ -33,6 +33,10 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::get('{id}/status', 'UserController@status')->name("status");
         });
 
+        Route::group(['as' => 'message.', 'prefix' => 'message'], function() {
+            Route::get('', 'MessageController@index')->name("index");
+        });
+
         Route::group(['as' => 'about.', 'prefix' => 'about'], function() {
             Route::get('', 'UserController@about')->name("index");
             Route::post('store', 'UserController@aboutStore')->name("store");
