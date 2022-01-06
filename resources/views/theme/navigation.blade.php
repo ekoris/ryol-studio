@@ -7,6 +7,8 @@
 		{{-- <h1 class="logo me-auto me-lg-0"><a href="">Ryol Studio<span>.</span></a></h1> --}}
 		@if (!Request::routeIs('authentication.product'))
 			<a href="/" class="logo me-auto me-lg-0"><img src="{{ $website->logo_url }}" alt="" class="img-fluid"></a>
+		@else
+			<a href="/" class="logo me-auto me-lg-0"><img src="#" alt="" class="img-fluid"></a>
 		@endif
 		<nav id="navbar" class="navbar order-last order-lg-0">
 			<ul>
