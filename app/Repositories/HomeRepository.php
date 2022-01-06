@@ -9,7 +9,7 @@ class HomeRepository {
 
     public function artWorkYearNavigation()
     {
-        return Product::select('year')->where('product_type', CategoryType::ART_WORK)->groupBy('year')->get();
+        return Product::select('year')->where('product_type', CategoryType::ART_WORK)->orderBy('year', 'desc')->groupBy('year')->get();
     }
 
     public function artWorkCategoryNavigation()
