@@ -20,7 +20,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
             <div class="row gy-4">
                 <div class="col-lg-12">
                     <div class="portfolio-details-slider swiper">
-                        <div class="swiper-wrapper align-items-center">
+                        <div class="align-items-center">
                             <div class="swiper-slide">
                                 <img src="{{ $product->image_url }}" alt="">
                             </div>
@@ -43,6 +43,9 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                             <li><strong>Year</strong>: {{ $product->year }}</li>
                             <li><strong>Category</strong>: {{ $product->category->title }}</li>
                         </ul>
+                        <div style="text-align: right !important">
+                            <button class="btn btn-dark" onclick="history.go(-1)">Back</button>
+                        </div>
                     </div>
                 </div>
             </div>
