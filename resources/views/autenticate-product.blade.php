@@ -26,8 +26,8 @@
                         <div class="row">
                             <div class="text-center">
                                 <div class="col-lg-6" style="float:none;margin:auto;padding-bottom: 20px">
-                            		<a href="/" class="logo me-auto me-lg-0"><img src="{{ $website->logo_url }}" alt="" class="img-fluid" style="width: 30%"></a>
-                                    <h3>
+                            		<img src="{{ $website->logo_url }}" alt="" class="img-fluid" style="width: 30%">
+                                    <h3 style="padding-top: 40px;padding-bottom: 5px;">
                                         Authenticity Access
                                     </h3>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
