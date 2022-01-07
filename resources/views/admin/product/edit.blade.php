@@ -155,14 +155,14 @@ use App\Constants\CategoryType;
                                                 </div>
                                                 @if ($key == 0)
                                                     <div class="col-md-2">
-                                                        <a href="" class="repeat-remove ml-8 my-auto">
-                                                            <button class="btn btn-danger btn-sm">Remove</button>
+                                                        <a href="" class="repeat-add ml-8 my-auto">
+                                                            <button class="btn btn-warning btn-sm">Add Edition</button>
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="col-md-2">
-                                                        <a href="" class="repeat-add ml-8 my-auto">
-                                                            <button class="btn btn-warning btn-sm">Add Edition</button>
+                                                        <a href="" class="repeat-remove ml-8 my-auto">
+                                                            <button class="btn btn-danger btn-sm">Remove</button>
                                                         </a>
                                                     </div>
                                                 @endif

@@ -132,11 +132,13 @@ class ProductRepository {
         }
 
         foreach (($data['product_editions'] ?? []) as $key => $value) {
-            ProductEdition::create([
-                'product_id' => $product->id,
-                'edition' => $value,
-                'is_sold' => 0
-            ]);
+            if ($value != '') {
+                ProductEdition::create([
+                    'product_id' => $product->id,
+                    'edition' => $value,
+                    'is_sold' => 0
+                ]);
+            }
         }
     }
 
@@ -181,10 +183,12 @@ class ProductRepository {
 
         ProductEdition::where('product_id', $product->id)->delete();
         foreach (($data['product_editions'] ?? []) as $key => $value) {
-            ProductEdition::create([
-                'product_id' => $product->id,
-                'edition' => $value,
-            ]);
+            if ($value != '') {
+                ProductEdition::create([
+                    'product_id' => $product->id,
+                    'edition' => $value,
+                ]);
+            }
         }
     }
 

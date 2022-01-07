@@ -68,6 +68,7 @@ use App\Constants\CategoryType;
                                                     <a href="{{ route('admin.order.action', [$item->id, 'status' => 2]) }}" onclick = "if (! confirm('Are You Sure Approve this orders ??')) { return false; }">
                                                         <button class="btn btn-danger btn-sm">Approve</button>
                                                     </a>
+                                                    <br>
                                                     <a href="{{ route('admin.order.action', [$item->id, 'status' => 0]) }}"  onclick = "if (! confirm('Are You Sure Rejected this orders ??')) { return false; }">
                                                         <button class="btn btn-warning btn-sm">Rejected</button>
                                                     </a>
