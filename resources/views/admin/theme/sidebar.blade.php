@@ -4,6 +4,7 @@
             <li class="header">Product</li>
             <li class="{{ Request::routeIs('admin.product.*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-calendar"></i> <span>Product</span></a></li>
             <li class="{{ Request::routeIs('admin.order.*') ? 'active' : '' }}"><a href="{{ route('admin.order.index') }}"><i class="fa fa-area-chart"></i> <span>Order</span></a></li>
+            <li class="{{ Request::routeIs('admin.authenticate.*') ? 'active' : '' }}"><a href="{{ route('admin.authenticate.index') }}"><i class="fa fa-cog"></i> <span>Authenticate Product</span></a></li>
             <li class="header">Feed</li>
             <li class="{{ Request::routeIs('admin.up-comming.*') ? 'active' : '' }}"><a href="{{ route('admin.up-comming.index') }}"><i class="fa fa-calendar"></i> <span>Up Comming Event</span></a></li>
             <li class="{{ Request::routeIs('admin.art-work.*') ? 'active' : '' }}"><a href="{{ route('admin.art-work.index') }}"><i class="fa fa-area-chart"></i> <span>Art Work</span></a></li>

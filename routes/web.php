@@ -23,7 +23,7 @@ Route::get('store/', 'HomeController@store')->name("store");
 Route::get('detail-product/{slug}', 'HomeController@detailProduct')->name("detail-product");
 Route::get('detail-product-store/{slug}', 'HomeController@detailProductStore')->name("detail-product-store");
 
-Route::get('about/cv', 'HomeController@cv')->name("about.cv");
+Route::get('about/statement', 'HomeController@cv')->name("about.cv");
 Route::get('about/cv-periodic', 'HomeController@cvPeriodic')->name("about.cv.periodic");
 Route::get('about/contact-us', 'HomeController@contactUs')->name("about.contact-us");
 Route::post('about/contact-us-store', 'HomeController@contactUsSend')->name("about.contact-us.send");

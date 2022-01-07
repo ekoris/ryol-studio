@@ -29,7 +29,7 @@ use App\Constants\CategoryType;
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Statement Cv</label>
+                                <label for="exampleInputEmail1">Statement</label>
                                 <textarea name="cv" id="" style="width: 100%">{{ $website->cv ?? null }}</textarea>
                             </div>
                         </div>

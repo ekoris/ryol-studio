@@ -11,11 +11,11 @@ use App\Constants\CategoryType;
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Curiculum Vitae
+            Auheticate Product User
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Curiculum Vitae</li>
+            <li class="active">Auheticate Product User</li>
         </ol>
     </section>
     <section class="content">
@@ -25,7 +25,7 @@ use App\Constants\CategoryType;
                     <div class="box-header">
                         <div class="row">
                             <div class="col-md-5">
-                                <a class="btn btn-warning mb-0" href="{{ route('admin.cv.create') }}">Create</a>
+                                <a class="btn btn-warning mb-0" href="{{ route('admin.authenticate.create') }}">Create</a>
                             </div>
                         </div>
                     </div>
@@ -33,16 +33,24 @@ use App\Constants\CategoryType;
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th>Year</th>
+                                    <th>User</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>URL</th>
+                                    <th>Created</th>
                                     <th></th>
                                 </tr>
-                                @forelse ($cv as $item)
+                                @forelse ($authenticates as $item)
                                     <tr>
-                                        <td>{{ $item->year }}</td>
+                                        <td>{{ $item->user->name.' '.$item->user->email }}</td>
+                                        <td>{{ $item->name ?? '-' }}</td>
+                                        <td>{{ date('d F Y', strtotime($item->date)) }}</td>
+                                        <td>{{ $item->url  ?? '-'}}</td>
+                                        <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                         <td>
                                             <div>
-                                                <a href="{{ route('admin.cv.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                                <a href="{{ route('admin.cv.delete', $item->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                                <a href="{{ route('admin.authenticate.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                                <a href="{{ route('admin.authenticate.delete', $item->id) }}" class="btn btn-sm btn-danger">Delete</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -53,7 +61,7 @@ use App\Constants\CategoryType;
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $cv->withQueryString()->links() }}
+                        {{ $authenticates->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

@@ -68,8 +68,16 @@
                     </form>
                 </div>
             </div>
-            
         </div>
     </section><!-- End Contact Section -->
 </section>
+
+<script>
+    @if(Session::get('wa'))
+        window.onload = (event) => {
+            window.open("https://wa.me/{{ Session::get('no_contact') }}?text={{ Session::get('message') }}");
+        };
+    @endif
+
+</script>
 @endsection

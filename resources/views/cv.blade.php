@@ -15,7 +15,7 @@
             <div class="row gy-4">
                 <div class="col-lg-12">
                     <div class="portfolio-description">
-                        <h2>Cv</h2>
+                        <h2>Statement</h2>
                         <p>{!! $website->cv !!}</p>
                     </div>
                 </div>

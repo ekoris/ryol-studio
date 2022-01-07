@@ -74,6 +74,15 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::get('{id}/delete', 'CvController@delete')->name("delete");
         });
 
+        Route::group(['as' => 'authenticate.', 'prefix' => 'authenticate'], function() {
+            Route::get('', 'AuthenticateProductController@index')->name("index");
+            Route::get('create', 'AuthenticateProductController@create')->name("create");
+            Route::post('store', 'AuthenticateProductController@store')->name("store");
+            Route::get('{id}/edit', 'AuthenticateProductController@edit')->name("edit");
+            Route::post('{id}/update', 'AuthenticateProductController@update')->name("update");
+            Route::get('{id}/delete', 'AuthenticateProductController@delete')->name("delete");
+        });
+
         Route::group(['as' => 'up-comming.', 'prefix' => 'up-comming'], function() {
             Route::get('', 'UpCommingController@index')->name("index");
             Route::get('create', 'UpCommingController@create')->name("create");

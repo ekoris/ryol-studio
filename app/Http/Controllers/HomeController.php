@@ -11,12 +11,14 @@ use App\Repositories\Entities\Cv;
 use App\Repositories\Entities\Order;
 use App\Repositories\Entities\User;
 use App\Repositories\Entities\WebsiteManagement;
+use App\Repositories\Entities\AuthenticationProduct;
 use App\Repositories\ProductRepository;
 use App\Repositories\UpCommingRepository;
 use App\Repositories\WebsiteManagementRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController extends Controller
@@ -224,8 +226,9 @@ class HomeController extends Controller
 
         if (Auth::loginUsingId($user->id)) {
             $orders = Order::where('user_id', logged_in_user()->id)->get();
+            $ordersExtends = AuthenticationProduct::where('user_id', logged_in_user()->id)->get();
 
-            return view('authenticate-product-detail', compact('orders'));
+            return view('authenticate-product-detail', compact('orders','ordersExtends'));
         } else {
             return redirect()->route('authentication.product')->with(['error' => true]);
         }
@@ -253,14 +256,24 @@ class HomeController extends Controller
 
     public function contactUsSend(Request $request)
     {
-        ContactUs::create([
+        Mail::raw($request->message, function ($message) use($request) {
+            $message
+              ->to($request->email)
+              ->subject($request->subject.' - '.$request->name);
+          });
+
+        $email = [
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
-            'message' => $request->message,
-        ]);
+            'message' => $request->message
+        ];
 
-        return redirect()->route('about.contact-us')->with(['success' => true]);
+        ContactUs::create($email);
+
+        $website = $this->website->first();
+
+        return redirect()->route('about.contact-us')->with(['success' => true,'wa' =>true, 'message' => $request->message, 'number' => $website->no_contact]);
     }
 }
 
