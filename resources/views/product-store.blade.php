@@ -78,7 +78,9 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                                 <div style="margin-bottom: 30px"></div>
                                 <h5><b>Edition</b> </h5>
                                 @foreach (($product->productEditions ?? []) as $item)
-                                    <input type="radio" name="edition" {{ $item->is_sold == 1 ? 'disabled' : 'required' }} value="{{ $item->id }}"> <i>{{ $item->edition }}</i> <br>
+                                    @if ($item->edition != '')
+                                        <input type="radio" name="edition" {{ $item->is_sold == 1 ? 'disabled' : 'required' }} value="{{ $item->id }}"> <i>{{ $item->edition }}</i> <br>
+                                    @endif
                                 @endforeach
                             </div>
                             @if (logged_in_user())
