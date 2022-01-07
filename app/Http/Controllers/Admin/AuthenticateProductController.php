@@ -71,7 +71,7 @@ class AuthenticateProductController extends Controller
     public function delete($id)
     {
         try {
-            AuthenticationProduct::where('id', $id)->delete($data);
+            AuthenticationProduct::where('id', $id)->delete();
             notice('success', 'Berhasil Dihapus');
         } catch (\Throwable $th) {
             throw $th;
