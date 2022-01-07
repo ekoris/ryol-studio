@@ -67,4 +67,16 @@ class AuthenticateProductController extends Controller
 
         return redirect()->route('admin.authenticate.index');
     }
+
+    public function delete($id)
+    {
+        try {
+            AuthenticationProduct::where('id', $id)->delete($data);
+            notice('success', 'Berhasil Dihapus');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return redirect()->route('admin.authenticate.index');
+    }
 }
