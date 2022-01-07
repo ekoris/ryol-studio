@@ -6,6 +6,31 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 @endphp
 
 @push('styles')
+<style>
+    .zoom {
+        display:inline-block;
+        position: relative;
+    }
+
+    .zoom:after {
+        content:'';
+        display:block; 
+        width:1000px; 
+        height:1000px; 
+        position:absolute; 
+        top:0;
+        right:0;
+        background:url(icon.png);
+    }
+    
+    .zoom img {
+        display: block;
+    }
+    
+    .zoom img::selection { 
+        background-color: transparent; 
+    }
+</style>
 @endpush
 
 @section('body')
@@ -23,30 +48,23 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                 <div class="col-lg-12">
                     <div class="portfolio-details-slider swiper">
                         <div class="align-items-center">
-                            <div class="swiper-slide">
+                            <div class="swiper-slide zoom" id="ex1">
                                 <img src="{{ $product->image_url }}" alt="">
                             </div>
-                            @forelse (($product->productPhotos ?? []) as $item)
-                                <div class="swiper-slide">  
-                                    <img src="{{ $item->image_url }}" alt="">
-                                </div>
-                            @empty
-                                
-                            @endforelse
+                            <div class="swiper-pagination"></div>
                         </div>
-                        <div class="swiper-pagination"></div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="portfolio-info">
-                        <h3>Project information</h3>
-                        <ul>
-                            <li><strong>Year</strong>: {{ $product->year }}</li>
-                            <li><strong>Category</strong>: {{ $product->category->title }}</li>
-                            <li><strong>Description</strong>: <br>{!! $product->description != '' ? $product->description : '' !!}</li>
-                        </ul>
-                        <div style="text-align: right !important">
-                            <button class="btn btn-dark" onclick="history.go(-1)">Back</button>
+                    <div class="col-md-12">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Year</strong>: {{ $product->year }}</li>
+                                <li><strong>Category</strong>: {{ $product->category->title }}</li>
+                                <li><strong>Description</strong>: <br>{!! $product->description != '' ? $product->description : '' !!}</li>
+                            </ul>
+                            <div style="text-align: right !important">
+                                <button class="btn btn-dark" onclick="history.go(-1)">Back</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,25 +75,12 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 @endsection
 
 @push('scripts')
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        @if ($product->product_type == CategoryType::PRODUCT && logged_in_user())
-        function save(){
-            $.ajax({
-                type: "post",
-                url: "{{ route('orders') }}",
-                data : {
-                    _token : '{{ csrf_token() }}',
-                    user_id : '{{ logged_in_user()->id ?? 'null'    }}',
-                    product_id : '{{ $product->id }}',
-                },
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-        }
-        @endif
-    </script>
+<script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script>
+<script>
+    $(document).ready(function(){
+        $('#ex1').zoom();
+    });
+</script>
 @endpush
