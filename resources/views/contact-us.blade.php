@@ -37,7 +37,7 @@
                         <div class="phone">
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
-                            <p>+62 {{ $website->contact }}</p>
+                            <p>{{ $website->contact }}</p>
                         </div>
                     </div>
                 </div>
