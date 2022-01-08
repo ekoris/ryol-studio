@@ -52,11 +52,7 @@ class HomeController extends Controller
 
     public function upComming(Request $request, $param)
     {
-        if (is_numeric($param)) {
-            $params['year'] =  $param;
-        }else{
-            $params['slug_category'] =  $param;
-        }
+        $params['slug_category'] =  $param;
 
         $products = $this->upComming->fetch($params, false);
         return view('up-comming', compact('param', 'products'));

@@ -28,6 +28,12 @@ class UpCommingRepository {
             $query->where('category_id', $param['category_id']);
         }
 
+        if (isset($param['slug_category'])) {
+            $query->whereHas('category', function($q) use($param){
+                $q->where('slug', $param['slug_category']);
+            });
+        }
+
         if ($paginate) {
             return $query->paginate(30);
         }
