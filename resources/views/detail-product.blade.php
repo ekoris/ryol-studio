@@ -80,7 +80,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 <script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script>
 <script>
     $(document).ready(function(){
-        $('#ex1').zoom();
+        $('#ex1').zoom({ on:'grab' });
     });
 </script>
 @endpush
