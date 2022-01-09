@@ -40,18 +40,21 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
             <h2></h2>
         </div>
     </div>
-    
-    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-12">
                     <div class="portfolio-details-slider swiper">
                         <div class="align-items-center">
-                            <div class="swiper-slide zoom" id="ex1">
+                            <div class="swiper-slide zoom2 zoom"  id="panzoom">
                                 <img src="{{ $product->image_url }}" alt="">
                             </div>
-                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div style="margin-top: 20px; margin-bottom: 30px;text-align: right;margin-right: 20px">
+                            <button class="zoom-in btn btn-sm btn-dark">Zoom In</button>
+                            <button class="zoom-out btn btn-sm btn-dark">Zoom Out</button>
+                            <input type="range" class="zoom-range">
+                            <button class="reset btn btn-sm btn-dark">Reset</button>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -75,12 +78,22 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
 @endsection
 
 @push('scripts')
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.panzoom/2.0.6/jquery.panzoom.min.js"></script>
+<script>
+    $("#panzoom").panzoom({
+        $zoomIn: $(".zoom-in"),
+        $zoomOut: $(".zoom-out"),
+        $zoomRange: $(".zoom-range"),
+        $reset: $(".reset"),
+        contain: 'invert',
+    });
+</script>
+<script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script> --}}
 
-<script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script>
 <script>
     $(document).ready(function(){
-        $('#ex1').zoom({ on:'grab' });
+        $('.zoom2').zoom({ on:'click' });
     });
 </script>
 @endpush
