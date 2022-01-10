@@ -94,11 +94,10 @@ class OrderController extends Controller
 
         $website = $this->website->first();
 
-        $message = "New Order #".$orders->id." from ".logged_in_user()->name." - ".logged_in_user()->email."<br>";
-        $message.= "Product : ".$product->name."<br>";
-        $message.= "Size : ".$variant->variation->name."<br>";
-        $message.= "Edition : ".$edition->edition."<br>";
-        $message.= "<a href='route('admin.order.index')'> Link Order </a>";
+        $message = "New Order #".$orders->id." from ".logged_in_user()->name." - ".logged_in_user()->email." ";
+        $message.= "Product : ".$product->name." ";
+        $message.= "Size : ".$variant->variation->name." ";
+        $message.= "Edition : ".$edition->edition." ";
 
         Mail::raw($message, function ($message) use($website) {
             $message
