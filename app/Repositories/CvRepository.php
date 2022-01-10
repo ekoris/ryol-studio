@@ -36,4 +36,9 @@ class CvRepository {
         return Cv::find($id)->update($data);
     }
 
+    public function delete($id)
+    {
+        return Cv::find($id)->delete();
+    }
+
 }

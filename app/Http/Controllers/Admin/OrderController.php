@@ -30,7 +30,6 @@ class OrderController extends Controller
     public function action(Request $request, $orderId)
     {
         $order = Order::find($orderId);
-        
         switch ($request->status) {
             case '2':
                 ProductEdition::where('id', $order->product_edition_id)->update([

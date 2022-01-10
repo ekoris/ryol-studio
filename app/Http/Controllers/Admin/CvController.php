@@ -64,4 +64,16 @@ class CvController extends Controller
 
         return redirect()->route('admin.cv.index');
     }
+
+    public function delete($id)
+    {
+        try {
+            $this->cv->delete($id);
+            notice('success', 'Berhasil Dihapus');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return redirect()->route('admin.cv.index');
+    }
 }

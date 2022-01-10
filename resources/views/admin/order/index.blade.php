@@ -54,6 +54,7 @@ use App\Constants\CategoryType;
                                     <th>Create</th>
                                     <th>Product</th>
                                     <th>Variation</th>
+                                    <th>Edition</th>
                                     <th>Qty</th>
                                     <th>Total Order</th>
                                     <th>Shipping</th>
@@ -93,6 +94,7 @@ use App\Constants\CategoryType;
                                         <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ optional($item->product)->title }}</td>
                                         <td>{{ $item->variation }}</td>
+                                        <td>{{ $item->edition }}</td>
                                         <td>{{ $item->qty }}</td>
                                         <td>{{ $item->product->qurency.''.$item->total_price }}</td>
                                         <td><address>{{ $item->shippingOrder->name.', '.$item->shippingOrder->country.' '.$item->shippingOrder->address.' ('.$item->shippingOrder->optional_address.')'.' '.$item->shippingOrder->contact }}</address></td>
