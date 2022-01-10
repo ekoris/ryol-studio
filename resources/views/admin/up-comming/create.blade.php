@@ -32,11 +32,11 @@ use App\Constants\CategoryType;
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" name="title" required class="form-control" placeholder="Enter Name" required>
+                                <input type="text" name="title"  class="form-control" placeholder="Enter Name" >
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Year</label>
-                                <input type="text" name="year" id="" class="datepicker-input form-control" name="name" placeholder="Year Work" required>
+                                <input type="text" name="year" id="" class="datepicker-input form-control" name="name" placeholder="Year Work" >
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Category</label>
@@ -49,7 +49,7 @@ use App\Constants\CategoryType;
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type='file' name="image" onchange="readURL(this);"/ required>
+                                    <input type='file' name="image" onchange="readURL(this);"/ >
                                     <br>
                                     <img id="blah" style="height: 600px; display: none" alt="your image" />
                                 </div>

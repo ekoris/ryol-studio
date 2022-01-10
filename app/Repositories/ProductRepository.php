@@ -3,11 +3,13 @@
 namespace App\Repositories;
 
 use App\Constants\CategoryType;
+use App\Repositories\Entities\Order;
 use App\Repositories\Entities\Product;
 use App\Repositories\Entities\ProductPhoto;
 use App\Repositories\Entities\ProductUserPrivilege;
 use App\Repositories\Entities\ProductVariation;
 use App\Repositories\Entities\ProductEdition;
+use App\Repositories\Entities\Variation;
 
 class ProductRepository {
 
@@ -146,7 +148,6 @@ class ProductRepository {
     {
         $product = Product::find($id);
 
-
         $productData = $data;
         unset(
             $productData['users'],
@@ -171,9 +172,12 @@ class ProductRepository {
                 'product_id' => $product->id,
                 'image' => $value
             ]);
-        }
 
-        ProductVariation::where('product_id', $product->id)->delete();
+        }
+        $productVariation = Order::pluck('variation')->toArray();
+        $variation = Variation::whereIn('name', $productVariation)->pluck('id')->toArray();
+
+        ProductVariation::where('product_id', $product->id)->whereNotIn('variation_id', $variation)->delete();
         foreach (($data['variations'] ?? []) as $key => $value) {
             ProductVariation::create([
                 'product_id' => $product->id,
@@ -181,12 +185,25 @@ class ProductRepository {
             ]);
         }
 
-        ProductEdition::where('product_id', $product->id)->delete();
+        $order = Order::where('product_id', $product->id)->pluck('product_edition_id')->toArray();
+
+        ProductEdition::where('product_id', $product->id)->whereNotIn('id', $order)->delete();
         foreach (($data['product_editions'] ?? []) as $key => $value) {
             if ($value != '') {
                 ProductEdition::create([
                     'product_id' => $product->id,
                     'edition' => $value,
+                ]);
+            }
+        }
+
+        foreach (($data['product_edition_exists'] ?? []) as $key => $value) {
+            if ($value != '') {
+                ProductEdition::updateOrCreate([
+                    'id' => $key
+                ],[
+                    'product_id' => $product->id,
+                    'edition' => $value[0],
                 ]);
             }
         }

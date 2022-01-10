@@ -32,11 +32,11 @@ use App\Constants\CategoryType;
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" name="title" required class="form-control" placeholder="Enter Name" value="{{ $product->title }}" required>
+                                <input type="text" name="title" class="form-control" placeholder="Enter Name" value="{{ $product->title }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Year</label>
-                                <input type="text" name="year" id="" class="datepicker-input form-control" value="{{ $product->year }}" placeholder="Year Work" required>
+                                <input type="text" name="year" id="" class="datepicker-input form-control" value="{{ $product->year }}" placeholder="Year Work">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Category</label>

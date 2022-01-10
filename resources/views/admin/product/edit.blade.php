@@ -147,10 +147,10 @@ use App\Constants\CategoryType;
 								<div class="repeat-container">
 									<div class="d-flex pb-8 repeat-row">
                                         @forelse ($product->productEditions as $key => $item)
-										    <div class="row">
+										    <div class="row row-repeate">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="product_edition[]" value="{{ $item->edition }}" placeholder="Add Edition">
+                                                        <input type="text" class="form-control" name="product_edition_exists[{{$item->id}}][]" value="{{ $item->edition }}" placeholder="Add Edition">
                                                     </div>
                                                 </div>
                                                 @if ($key == 0)
@@ -232,7 +232,7 @@ use App\Constants\CategoryType;
 
 	$(document).on('click', '.repeat-remove', function(e){
 		e.preventDefault()
-		$(this).closest('.repeat-row').remove()
+		$(this).closest('.row-repeate').remove()
 	});
 	
 	function ImgUpload() {

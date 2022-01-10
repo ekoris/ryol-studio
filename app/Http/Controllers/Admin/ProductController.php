@@ -126,7 +126,8 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'qurency' => $request->qurency,
                 'is_sold' => $request->is_sold ?? 0,
-                'product_editions' => $request->product_edition
+                'product_editions' => $request->product_edition,
+                'product_edition_exists' => $request->product_edition_exists,
             ];
 
             if ($request->type_product == 1) {
