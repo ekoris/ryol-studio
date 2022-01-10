@@ -34,4 +34,9 @@ class OrderRepository {
         return $query->get();
     }
 
+    public function countOrder()
+    {
+        return Order::where('status', 1)->get()->count() ?? 0;
+    }
+
 }

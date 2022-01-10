@@ -3,7 +3,11 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Product</li>
             <li class="{{ Request::routeIs('admin.product.*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-calendar"></i> <span>Product</span></a></li>
-            <li class="{{ Request::routeIs('admin.order.*') ? 'active' : '' }}"><a href="{{ route('admin.order.index') }}"><i class="fa fa-area-chart"></i> <span>Order</span></a></li>
+            <li class="{{ Request::routeIs('admin.order.*') ? 'active' : '' }}"><a href="{{ route('admin.order.index') }}"><i class="fa fa-area-chart"></i> <span>Order</span>
+                <span class="pull-right-container">
+                    <small class="label pull-right bg-green">{{ resolve(App\Repositories\OrderRepository::class)->countOrder() }}</small>
+                </span>
+            </a></li>
             <li class="{{ Request::routeIs('admin.authenticate.*') ? 'active' : '' }}"><a href="{{ route('admin.authenticate.index') }}"><i class="fa fa-cog"></i> <span>Authenticate Product</span></a></li>
             <li class="header">Feed</li>
             <li class="{{ Request::routeIs('admin.up-comming.*') ? 'active' : '' }}"><a href="{{ route('admin.up-comming.index') }}"><i class="fa fa-calendar"></i> <span>Up Comming Event</span></a></li>
