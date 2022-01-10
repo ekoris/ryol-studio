@@ -89,7 +89,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
         contain: 'invert',
     });
 </script>
-<script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script> --}}
+<script src='{{ asset('assets/frontend/zoom/jquery.zoom.js') }}'></script>
 
 <script>
     $(document).ready(function(){
