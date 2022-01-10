@@ -174,10 +174,8 @@ class ProductRepository {
             ]);
 
         }
-        $productVariation = Order::pluck('variation')->toArray();
-        $variation = Variation::whereIn('name', $productVariation)->pluck('id')->toArray();
 
-        ProductVariation::where('product_id', $product->id)->whereNotIn('variation_id', $variation)->delete();
+        ProductVariation::where('product_id', $product->id)->delete();
         foreach (($data['variations'] ?? []) as $key => $value) {
             ProductVariation::create([
                 'product_id' => $product->id,
@@ -186,7 +184,6 @@ class ProductRepository {
         }
 
         $order = Order::where('product_id', $product->id)->pluck('product_edition_id')->toArray();
-
         ProductEdition::where('product_id', $product->id)->whereNotIn('id', $order)->delete();
         foreach (($data['product_editions'] ?? []) as $key => $value) {
             if ($value != '') {

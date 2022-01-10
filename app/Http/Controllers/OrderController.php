@@ -16,6 +16,7 @@ use App\Repositories\WebsiteManagementRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class OrderController extends Controller
@@ -93,11 +94,11 @@ class OrderController extends Controller
 
         $website = $this->website->first();
 
-        $message = 'New Order #'.$orders->id.' from '.logged_in_user()->name.' - '.logged_in_user()->email.'<br>';
-        $message.= 'Product : '.$product->name.'<br>';
-        $message.= 'Size : '.$variant->variation->name.'<br>';
-        $message.= 'Edition : '.$edition->edition.'<br>';
-        $message.= '<a href='. route('admin.order.index').'> Link Order </a>';
+        $message = "New Order #".$orders->id." from ".logged_in_user()->name." - ".logged_in_user()->email."<br>";
+        $message.= "Product : ".$product->name."<br>";
+        $message.= "Size : ".$variant->variation->name."<br>";
+        $message.= "Edition : ".$edition->edition."<br>";
+        $message.= "<a href='route('admin.order.index')'> Link Order </a>";
 
         Mail::raw($message, function ($message) use($website) {
             $message
