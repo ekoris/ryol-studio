@@ -252,11 +252,13 @@ class HomeController extends Controller
 
     public function contactUsSend(Request $request)
     {
-        Mail::raw($request->message, function ($message) use($request) {
+        $website = $this->website->first();
+
+        Mail::raw($request->message, function ($message) use($request, $website) {
             $message
-              ->to($request->email)
+              ->to($website->email)
               ->subject($request->subject.' - '.$request->name);
-          });
+        });
 
         $email = [
             'name' => $request->name,

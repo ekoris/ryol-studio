@@ -67,7 +67,7 @@ $website = resolve(App\Repositories\Entities\WebsiteManagement::class)->first();
                         <hr>
                         <form action="{{ route('order.checkout') }}" method="post">
                             @csrf
-                            <div style="padding-bottom: 10px">
+                            <div style="padding-bottom: 10px;display:none;">
                                 <h5><b>Qty</b> : <input type="number" name="qty" style="width: 50px;font-size: 14px" value="1" min="1" max="10" width="20px"></h5>
                             </div>
                             <div style="padding-bottom: 10px">

@@ -55,7 +55,6 @@ use App\Constants\CategoryType;
                                     <th>Product</th>
                                     <th>Variation</th>
                                     <th>Edition</th>
-                                    <th>Qty</th>
                                     <th>Total Order</th>
                                     <th>Shipping</th>
                                     <th>Product Detail</th>
@@ -95,7 +94,6 @@ use App\Constants\CategoryType;
                                         <td>{{ optional($item->product)->title }}</td>
                                         <td>{{ $item->variation }}</td>
                                         <td>{{ $item->edition }}</td>
-                                        <td>{{ $item->qty }}</td>
                                         <td>{{ $item->product->qurency.''.$item->total_price }}</td>
                                         <td><address>{{ $item->shippingOrder->name.', '.$item->shippingOrder->country.' '.$item->shippingOrder->address.' ('.$item->shippingOrder->optional_address.')'.' '.$item->shippingOrder->contact }}</address></td>
                                         <td><a href="{{ route('detail-product', $item->product->slug) }}" target="_blank">{{ route('detail-product', $item->product->slug) }}</a></td>

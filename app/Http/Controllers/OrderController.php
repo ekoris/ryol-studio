@@ -71,10 +71,10 @@ class OrderController extends Controller
             'user_id' => logged_in_user()->id,
             'product_id' => $product->id,
             'variation' => $variant->variation->name,
-            'qty' => $orderDetail->qty,
+            'qty' => 1,
             'edition' => $edition->edition,
             'product_edition_id' => $edition->id,
-            'total_price' => $orderDetail->qty * $product->price,
+            'total_price' => 1 * $product->price,
             'status' => 1,
         ];
 
@@ -90,6 +90,20 @@ class OrderController extends Controller
         ];
 
         $shippingOrder = OrderShipping::create($shipping);
+
+        $website = $this->website->first();
+
+        $message = 'New Order #'.$orders->id.' from '.logged_in_user()->name.' - '.logged_in_user()->email.'<br>';
+        $message.= 'Product : '.$product->name.'<br>';
+        $message.= 'Size : '.$variant->variation->name.'<br>';
+        $message.= 'Edition : '.$edition->edition.'<br>';
+        $message.= '<a href='. route('admin.order.index').'> Link Order </a>';
+
+        Mail::raw($message, function ($message) use($website) {
+            $message
+              ->to($website->email)
+              ->subject('New Order');
+        });
 
         return redirect()->route('order.success');
     }
