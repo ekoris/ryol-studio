@@ -183,7 +183,7 @@ class ProductRepository {
             ]);
         }
 
-        $order = Order::where('product_id', $product->id)->pluck('product_edition_id')->toArray();
+        $order = Order::where('product_id', $product->id)->has('product')->pluck('product_edition_id')->toArray();
         ProductEdition::where('product_id', $product->id)->whereNotIn('id', $order)->delete();
         foreach (($data['product_editions'] ?? []) as $key => $value) {
             if ($value != '') {

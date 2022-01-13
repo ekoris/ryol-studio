@@ -221,7 +221,7 @@ class HomeController extends Controller
         }
 
         if (Auth::loginUsingId($user->id)) {
-            $orders = Order::where('user_id', logged_in_user()->id)->get();
+            $orders = Order::where('user_id', logged_in_user()->id)->has('product')->get();
             $ordersExtends = AuthenticationProduct::where('user_id', logged_in_user()->id)->get();
 
             return view('authenticate-product-detail', compact('orders','ordersExtends'));
