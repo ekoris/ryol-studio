@@ -95,11 +95,11 @@ use App\Constants\CategoryType;
                                         <td>{{ $item->variation }}</td>
                                         <td>{{ $item->edition }}</td>
                                         <td>{{ optional($item->product)->qurency.''.$item->total_price }}</td>
-                                        <td><address>{{ $item->shippingOrder->name.', '.$item->shippingOrder->country.' '.$item->shippingOrder->address.' ('.$item->shippingOrder->optional_address.')'.' '.$item->shippingOrder->contact }}</address></td>
+                                        <td><address>{{ optional($item->shippingOrder)->name.', '.optional($item->shippingOrder)->country.' '.optional($item->shippingOrder)->address.' ('.optional($item->shippingOrder)->optional_address.')'.' '.optional($item->shippingOrder)->contact }}</address></td>
                                         <td><a href="{{ route('detail-product', optional($item->product)->slug) }}" target="_blank">{{ route('detail-product', optional($item->product)->slug) }}</a></td>
                                         <td>
-                                            {{ $item->user->name }} <br>
-                                            {{ $item->user->email }} <br>
+                                            {{ optional($item->user)->name }} <br>
+                                            {{ optional($item->user)->email }} <br>
                                         </td>
                                     </tr>
                                 @empty
