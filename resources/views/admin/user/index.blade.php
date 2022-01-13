@@ -66,9 +66,6 @@ use App\Constants\CategoryType;
                                             @if ($item->id != 1)
                                                 <a href="{{ route('admin.user.delete', $item->id) }}" onclick="confirm("Are You Sure ??")" class="btn btn-danger btn-sm">Delete</a>
                                             @endif
-
-                                            
-
                                         </td>
                                     </tr>
                                 @empty
@@ -78,6 +75,7 @@ use App\Constants\CategoryType;
                                 @endforelse
                             </tbody>
                         </table>
+                        {{ $users->withQueryString()->links() }}
                     </div>
                 </div>
             </div>
