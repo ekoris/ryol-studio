@@ -94,9 +94,9 @@ use App\Constants\CategoryType;
                                         <td>{{ optional($item->product)->title }}</td>
                                         <td>{{ $item->variation }}</td>
                                         <td>{{ $item->edition }}</td>
-                                        <td>{{ $item->product->qurency.''.$item->total_price }}</td>
+                                        <td>{{ optional($item->product)->qurency.''.$item->total_price }}</td>
                                         <td><address>{{ $item->shippingOrder->name.', '.$item->shippingOrder->country.' '.$item->shippingOrder->address.' ('.$item->shippingOrder->optional_address.')'.' '.$item->shippingOrder->contact }}</address></td>
-                                        <td><a href="{{ route('detail-product', $item->product->slug) }}" target="_blank">{{ route('detail-product', $item->product->slug) }}</a></td>
+                                        <td><a href="{{ route('detail-product', optional($item->product)->slug) }}" target="_blank">{{ route('detail-product', optional($item->product)->slug) }}</a></td>
                                         <td>
                                             {{ $item->user->name }} <br>
                                             {{ $item->user->email }} <br>

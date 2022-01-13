@@ -9,7 +9,11 @@ class OrderRepository {
 
     public function fetch($param = [], $paginate = false)
     {
-        $query = Order::latest();
+        $query = Order::latest()->whereExists(function ($query) {
+            $query->select("products.id")
+                ->from('products')
+                ->whereRaw('products.id = orders.product_id');
+        });
 
         if (isset($param['product'])) {
             $query->whereHas('product', function($q) use($param){
