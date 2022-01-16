@@ -12,11 +12,11 @@ use App\Constants\CategoryType;
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Auheticate Product User
+            Authenticate Product User
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Auheticate Product User</li>
+            <li class="active">Authenticate Product User</li>
         </ol>
     </section>
     <section class="content">
