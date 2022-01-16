@@ -46,7 +46,7 @@
 						<i class="times">X</i>
 					</div>
 					<h1>I Know You Sad. Sorry :(</h1> 
-					<p>This Product already received in few minute !</p>
+					<p>This Product already reserved in few minute !</p>
 				@else
 					<div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
 						<i class="checkmark">✓</i>

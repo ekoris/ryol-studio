@@ -121,5 +121,10 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
             Route::post('store', 'UserController@sliderStore')->name("store");
         });
 
+        Route::group(['as' => 'json.', 'prefix' => 'json'], function() {
+            Route::get('order-variation', 'JsonController@orderVariation')->name("order.variation");
+            Route::get('order-edition', 'JsonController@orderEdition')->name("order.edition");
+        });
+
     });
 });

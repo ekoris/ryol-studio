@@ -10,6 +10,8 @@ use Spatie\Sluggable\SlugOptions;
 
 class Order extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'orders';
 
     protected $guarded = ["id"];
@@ -17,6 +19,11 @@ class Order extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function productEdition()
+    {
+        return $this->belongsTo(ProductEdition::class, 'product_edition_id', 'id');
     }
 
     public function user()

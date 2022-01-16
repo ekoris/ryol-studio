@@ -83,7 +83,10 @@ use App\Constants\CategoryType;
                                             <td>-</td>
                                             <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                -
+                                                <div>
+                                                    <a href="{{ route('admin.authenticate.edit', [$item->id, 'order' => true]) }}" class="btn btn-sm btn-info">Edit</a>
+                                                    <a href="{{ route('admin.authenticate.delete', [$item->id, 'order' => true]) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">Delete</a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endif
