@@ -51,7 +51,7 @@
                   <h2>Authenticity Data</h2> 
                   <ul style="text-align: left !important">
                     @foreach ($orders as $item)
-                        <li>{{ date('F Y', strtotime($item->product->date_production ?? '')) .' / ' }} <a href="{{ route('detail-product-store', optional($item->product)->slug) }}" target="_blank">{{ optional($item->product)->title ?? '-'.' / ' }}</a>{{ $order->edition ?? '' }}</li>
+                        <li>{{ date('F Y', strtotime($item->product->date_production ?? '')) .' / ' }} <a href="{{ route('detail-product-store', optional($item->product)->slug) }}" target="_blank">{{ optional($item->product)->title ?? '-'.' / ' }}</a>{{ $item->edition ?? '' }}</li>
                     @endforeach
                     @foreach ($ordersExtends as $item)
                         <li>{{ date('d F Y', strtotime($item->date ?? '')) .' / ' }} <a href="{{ $item->url ?? '#' }}">{{ $item->name ?? '-' }}</li>
