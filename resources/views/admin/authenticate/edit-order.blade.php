@@ -44,8 +44,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Product</label>
                                 <select name="product_id" class="select2 form-control" id="product" required>
-                                    {{-- @foreach (resolve(App\Repositories\Entities\Product::class)->whereHas('category', function($q){$q->where('title', 'product');})->get() as $item) --}}
-                                    @foreach (resolve(App\Repositories\Entities\Product::class)->get() as $item)
+                                    @foreach (resolve(App\Repositories\Entities\Product::class)->whereHas('category', function($q){$q->where('title', 'product');})->get() as $item)
+                                    {{-- @foreach (resolve(App\Repositories\Entities\Product::class)->get() as $item) --}}
                                         <option value="{{ $item->id }}" {{ $order->product_id == $item->id ? 'selected' : '' }}>{{ $item->title }}</option>
 									@endforeach
                                 </select>
