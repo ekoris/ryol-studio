@@ -68,7 +68,7 @@ class OrderController extends Controller
         $variant = resolve(\App\Repositories\Entities\ProductVariation::class)->find($orderDetail->variant);
         $edition = resolve(\App\Repositories\Entities\ProductEdition::class)->find($orderDetail->edition);
 
-        $order = Order::where('product_id', $product->id)->where('status', 2)->where('product_edition_id', $edition->id)->first();
+        $order = Order::where('product_id', $product->id)->where('product_edition_id', $edition->id)->first();
 
         if ($order) {
             return redirect()->route('order.success')->with(['sold_out' => true]);

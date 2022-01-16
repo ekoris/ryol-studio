@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], f
         Route::group(['as' => 'order.', 'prefix' => 'order'], function() {
             Route::get('', 'OrderController@index')->name("index");
             Route::get('{id}/action', 'OrderController@action')->name("action");
+            Route::get('{id}/delete', 'OrderController@delete')->name("delete");
         });
 
         Route::group(['as' => 'slider.', 'prefix' => 'slider'], function() {

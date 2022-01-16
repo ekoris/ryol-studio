@@ -54,4 +54,13 @@ class OrderController extends Controller
 
     }
 
+    public function delete(Request $request, $orderId)
+    {
+        $order = Order::find($orderId)->delete();
+        notice('success', 'Success. Deleted');
+
+        return redirect()->route('admin.order.index');
+
+    }
+
 }

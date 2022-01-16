@@ -74,9 +74,10 @@ use App\Constants\CategoryType;
                                                     </a>
                                                     @break
                                                 @default
-                                                    -
                                             @endswitch
-                                            
+                                            @if ($item->status != 2)
+                                                <a href="{{ route('admin.order.delete', $item->id) }}" onclick="return confirm('Are You Sure ??')" class="btn btn-sm btn-danger">delete</a>
+                                            @endif
                                         </td>
                                         <td>
                                             @switch($item->status)
