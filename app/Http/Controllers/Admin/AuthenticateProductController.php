@@ -133,6 +133,12 @@ class AuthenticateProductController extends Controller
     {
         try {
             if ($request->has('order')) {
+                $order = Order::find($orderId);
+
+                ProductEdition::where('id', $order->product_edition_id)->update([
+                    'is_sold' => 0
+                ]);
+                
                 Order::where('id', $id)->delete();
             }else{
                 AuthenticationProduct::where('id', $id)->delete();

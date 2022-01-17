@@ -56,6 +56,12 @@ class OrderController extends Controller
 
     public function delete(Request $request, $orderId)
     {
+        $order = Order::find($orderId);
+
+        ProductEdition::where('id', $order->product_edition_id)->update([
+            'is_sold' => 0
+        ]);
+
         $order = Order::find($orderId)->delete();
         notice('success', 'Success. Deleted');
 
