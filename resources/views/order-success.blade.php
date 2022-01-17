@@ -41,18 +41,18 @@
 	<section id="portfolio-details" class="portfolio-details">
 		<div class="container" style="text-align: center">
 			<div class="card" style="text-align: center">
-				@if (Session::get('sold_out'))
-					<div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-						<i class="times">X</i>
-					</div>
-					<h1>I Know You Sad. Sorry :(</h1> 
-					<p>This Product already reserved in few minute !</p>
-				@else
+				@if (!Session::get('sold_out'))
 					<div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
 						<i class="checkmark">✓</i>
 					</div>
 					<h1>Success</h1> 
 					<p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+				@else
+					<div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+						<i class="times">X</i>
+					</div>
+					<h1>I Know You Sad. Sorry :(</h1> 
+					<p>This Product already reserved in few minute !</p>
 				@endif
 			</div>
 		</div>
