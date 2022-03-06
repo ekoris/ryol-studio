@@ -69,14 +69,16 @@ class HomeController extends Controller
         $params['slug_product'] =  $slug;
         $product = $this->product->findBySlug($slug);
 
-        if ($product->is_privilege == 1) {
-            if (logged_in_user()) {
-                $authorize = $product->whereHas('productUserPrivileges', function($q){
-                    $q->where('user_id', logged_in_user()->id);
-                })->first();
-
-                if (!$authorize) {
-                    return redirect('/');
+        if ($product) {
+            if ($product->is_privilege == 1) {
+                if (logged_in_user()) {
+                    $authorize = $product->whereHas('productUserPrivileges', function($q){
+                        $q->where('user_id', logged_in_user()->id);
+                    })->first();
+    
+                    if (!$authorize) {
+                        return redirect('/');
+                    }
                 }
             }
         }
@@ -234,15 +236,17 @@ class HomeController extends Controller
     {
         $params['slug_product'] =  $slug;
         $product = $this->product->findBySlug($slug);
-
-        if ($product->is_privilege == 1) {
-            if (logged_in_user()) {
-                $authorize = $product->whereHas('productUserPrivileges', function($q){
-                    $q->where('user_id', logged_in_user()->id);
-                })->first();
-
-                if (!$authorize) {
-                    return redirect('/');
+        
+        if ($product) {
+            if ($product->is_privilege == 1) {
+                if (logged_in_user()) {
+                    $authorize = $product->whereHas('productUserPrivileges', function($q){
+                        $q->where('user_id', logged_in_user()->id);
+                    })->first();
+    
+                    if (!$authorize) {
+                        return redirect('/');
+                    }
                 }
             }
         }
