@@ -95,14 +95,26 @@
                             </td>
                             <td>{{ $data['qty'] }}</td>
                             @php
-                                $variant = resolve(App\Repositories\Entities\ProductVariation::class)->find($data['variant']);
+                                if (!empty($data['variant'])) {
+                                    $variant = resolve(App\Repositories\Entities\ProductVariation::class)->find($data['variant']);
+
+                                    $variantName = optional($variant->variation)->name ?? '-';
+                                }else{
+                                    $variantName = '-';
+                                }
                             @endphp
-                            <td>{{ $variant->variation->name ?? '-' }}</td>
+                            <td>{{ $variantName }}</td>
                             <td>{{ $product->qurency.''.$product->price }}</td>
                             @php
-                                $edition = resolve(App\Repositories\Entities\ProductEdition::class)->find($data['edition']);
+                                if (!empty($data['edition'])) {
+                                    $edition = resolve(App\Repositories\Entities\ProductEdition::class)->find($data['edition']);
+
+                                    $editionName = $edition->edition;
+                                }else{
+                                    $editionName = '-';
+                                }
                             @endphp
-                            <td>{{ $edition->edition }}</td>
+                            <td>{{ $editionName }}</td>
                         </tr>
                     </table>
                 </div>

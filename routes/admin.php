@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin/', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
     Route::get('login', 'AuthController@index')->name("auth");
     Route::post('sign-in', 'AuthController@signIn')->name("sign-in");
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     Route::group(['middleware' => ['role:admin','auth:web']], function() {
         Route::get('sign-out', 'AuthController@signOut')->name("sign-out");
         Route::get('', 'AdminController@index')->name("index");

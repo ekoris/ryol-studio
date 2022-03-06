@@ -65,8 +65,8 @@ class OrderController extends Controller
     {
         $orderDetail = json_decode($request->order_detail);
         $product =  $this->product->findBySlug($orderDetail->slug);
-        $variant = resolve(\App\Repositories\Entities\ProductVariation::class)->find($orderDetail->variant);
-        $edition = resolve(\App\Repositories\Entities\ProductEdition::class)->find($orderDetail->edition);
+        $variant = resolve(\App\Repositories\Entities\ProductVariation::class)->find($orderDetail->variant) ?? null;
+        $edition = resolve(\App\Repositories\Entities\ProductEdition::class)->find($orderDetail->edition) ?? null;
 
         $order = Order::where('product_id', $product->id)->where('product_edition_id', $edition->id)->first();
 
@@ -77,9 +77,9 @@ class OrderController extends Controller
         $order = [
             'user_id' => logged_in_user()->id,
             'product_id' => $product->id,
-            'variation' => $variant->variation->name,
+            'variation' => optional($variant->variation)->name ?? null,
             'qty' => 1,
-            'edition' => $edition->edition,
+            'edition' => $edition->edition ?? null,
             'product_edition_id' => $edition->id,
             'total_price' => 1 * $product->price,
             'status' => 1,
@@ -102,7 +102,7 @@ class OrderController extends Controller
 
         $message = "New Order #".$orders->id." from ".logged_in_user()->name." - ".logged_in_user()->email." ";
         $message.= "Product : ".$product->name." ";
-        $message.= "Size : ".$variant->variation->name." ";
+        $message.= "Size : ".optional($variant->variation)->name ?? null." ";
         $message.= "Edition : ".$edition->edition." ";
 
         Mail::raw($message, function ($message) use($website) {
