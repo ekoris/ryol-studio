@@ -66,9 +66,15 @@ class HomeController extends Controller
 
     public function detailProduct(Request $request, $slug)
     {
+        
         $params['slug_product'] =  $slug;
+        
         $product = $this->product->findBySlug($slug);
-
+        
+        if (empty($product)) {
+            return redirect('/');
+        }
+        
         if ($product) {
             if ($product->is_privilege == 1) {
                 if (logged_in_user()) {
@@ -82,7 +88,6 @@ class HomeController extends Controller
                 }
             }
         }
-
 
         $qrcode = QrCode::size(200)->generate(route('detail-product', $product->slug));
 
@@ -129,6 +134,12 @@ class HomeController extends Controller
     public function doRegister(Request $request)
     {
         $password = Hash::make($request->password);
+        $findUser = User::where('email', $request->email)->first();
+
+        if (empty($findUser)) {
+            return redirect()->route('auth.login')->with(['exist' => true]);
+        }
+
         $data = [
             'name' => $request->name,
             'email' => $request->email,

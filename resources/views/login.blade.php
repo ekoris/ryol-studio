@@ -40,6 +40,12 @@
                             Email Or Password Error !!
                         </div>
                     @endif
+
+                    @if (Session::get('exist'))
+                        <div class="alert alert-danger" role="alert">
+                            Email is exist, login or contact admin for info
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row mt-5">
