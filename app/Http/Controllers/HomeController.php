@@ -38,6 +38,7 @@ class HomeController extends Controller
 
     public function artWork(Request $request, $param)
     {
+        $params = $param;
         if (is_numeric($param)) {
             $params['year'] =  $param;
         }
@@ -66,7 +67,6 @@ class HomeController extends Controller
 
     public function detailProduct(Request $request, $slug)
     {
-        
         $params['slug_product'] =  $slug;
         
         $product = $this->product->findBySlug($slug);
